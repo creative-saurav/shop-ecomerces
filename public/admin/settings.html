@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Settings — AdminKit</title>
+<meta name="description" content="System settings — AdminKit admin dashboard."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/css/main.css"/>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+<nav id="sidebar">
+  <div style="display:flex;flex-direction:column;flex:1;overflow-y:auto;padding:0 8px">
+    <div class="flex items-center gap-3 px-2 py-5"><div class="sidebar-logo-icon flex items-center justify-center w-9 h-9 rounded-xl shrink-0" style="background:linear-gradient(135deg,#6366f1,#4f46e5);box-shadow:0 4px 16px rgba(99,102,241,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="sidebar-logo-text"><div class="font-bold text-main text-sm">AdminKit</div><div class="text-xs" style="color:var(--text-muted)">Enterprise v1.0</div></div></div>
+    <div class="nav-section-title">Main</div>
+    <a href="index.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="analytics.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span class="nav-label">Analytics</span></a>
+    <a href="orders.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="nav-label">Orders</span><span class="nav-badge">24</span></a>
+    <a href="products.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><span class="nav-label">Products</span></a>
+    <div class="nav-section-title">People</div>
+    <a href="users.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-label">Users</span><span class="nav-badge">1.2k</span></a>
+    <a href="profile.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">My Profile</span></a>
+    <div class="nav-section-title">System</div>
+    <a href="settings.html" class="nav-item active"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span class="nav-label">Settings</span></a>
+    <a href="login.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="nav-label">Logout</span></a>
+  </div>
+  <div style="padding:12px"><a href="profile.html" class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color);text-decoration:none"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" class="avatar avatar-sm shrink-0" style="background:var(--bg-card-hover)" alt="Admin"><div class="sidebar-logo-text overflow-hidden"><div class="text-sm font-semibold text-main truncate">Alex Morgan</div><div class="text-xs truncate" style="color:var(--text-muted)">Super Admin</div></div></a></div>
+</nav>
+
+<header id="topbar">
+  <button id="sidebar-toggle" class="btn-icon mr-1"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  <div class="search-bar"><svg width="15" height="15" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search settings…"/></div>
+  <div class="flex items-center gap-2 ml-auto">
+    <button id="theme-toggle" class="btn-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+    <div class="relative"><button data-dropdown="user-dd-s" class="flex items-center gap-2 px-2 py-1 rounded-xl" style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.12)"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><svg width="12" height="12" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="user-dd-s"><a href="profile.html" class="dropdown-item">My Profile</a><div class="dropdown-divider"></div><a href="login.html" class="dropdown-item" style="color:#fda4af">Logout</a></div></div>
+  </div>
+</header>
+
+<main id="main-content" class="page-enter">
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-main">Settings</h1>
+      <div class="breadcrumb mt-1"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="current">Settings</span></div>
+    </div>
+    <button class="btn-primary" onclick="showToast('Settings saved!','success')">Save Changes</button>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-5">
+    <!-- Settings Tabs -->
+    <div class="lg:col-span-1">
+      <div class="card p-2 space-y-1">
+        <button data-tab-group="settings" data-tab-trigger="general" class="w-full text-left dropdown-item rounded-lg active" style="color:#818cf8;background:rgba(99,102,241,.1)">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>General
+        </button>
+        <button data-tab-group="settings" data-tab-trigger="security" class="w-full text-left dropdown-item rounded-lg">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security
+        </button>
+        <button data-tab-group="settings" data-tab-trigger="notifications" class="w-full text-left dropdown-item rounded-lg">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Notifications
+        </button>
+        <button data-tab-group="settings" data-tab-trigger="billing" class="w-full text-left dropdown-item rounded-lg">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Billing
+        </button>
+        <button data-tab-group="settings" data-tab-trigger="integrations" class="w-full text-left dropdown-item rounded-lg">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>Integrations
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="lg:col-span-3">
+
+      <!-- General -->
+      <div data-tab-group="settings" data-tab-content="general">
+        <div class="card mb-4">
+          <div class="text-base font-semibold text-main mb-4">Site Information</div>
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Site Name</label><input class="form-input" type="text" value="AdminKit Pro"/></div>
+              <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Tagline</label><input class="form-input" type="text" value="Enterprise Admin Dashboard"/></div>
+            </div>
+            <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Site URL</label><input class="form-input" type="url" value="https://adminkit.example.com"/></div>
+            <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Admin Email</label><input class="form-input" type="email" value="admin@adminkit.com"/></div>
+            <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Timezone</label><select class="form-select select2-init"><option>(UTC+06:00) Dhaka</option><option>(UTC+00:00) London</option><option>(UTC-05:00) New York</option></select></div>
+            <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Language</label><select class="form-select select2-init"><option>English (US)</option><option>Bangla</option><option>Spanish</option></select></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="text-base font-semibold text-main mb-4">Preferences</div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Dark Mode</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Use dark color scheme by default</div></div><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Compact Sidebar</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Collapse sidebar by default on load</div></div><label class="toggle"><input type="checkbox"/><span class="toggle-slider"></span></label></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Analytics Tracking</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Enable Google Analytics integration</div></div><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Maintenance Mode</div><div class="text-xs mt-0.5" style="color:#f59e0b">⚠ Hides the site from public users</div></div><label class="toggle"><input type="checkbox"/><span class="toggle-slider"></span></label></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div data-tab-group="settings" data-tab-content="security" class="hidden">
+        <div class="card mb-4">
+          <div class="text-base font-semibold text-main mb-4">Change Password</div>
+          <div class="space-y-4">
+            <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Current Password</label><input class="form-input" type="password" placeholder="Enter current password"/></div>
+            <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">New Password</label><input class="form-input" type="password" placeholder="Min. 8 characters"/></div>
+            <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Confirm Password</label><input class="form-input" type="password" placeholder="Re-enter new password"/></div>
+            <button class="btn-primary" onclick="showToast('Password updated!','success')">Update Password</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="text-base font-semibold text-main mb-4">Two-Factor Authentication</div>
+          <div class="flex items-start gap-4 p-4 rounded-xl mb-4" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15)">
+            <svg width="20" height="20" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div><div class="text-sm font-medium" style="color:#6ee7b7">2FA is currently disabled</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Enable two-factor authentication for enhanced security</div></div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Authenticator App</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Use Google or Microsoft Authenticator</div></div><button class="btn-secondary text-xs py-1.5 px-3" onclick="showToast('2FA setup started','info')">Enable</button></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">SMS Authentication</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Receive codes via text message</div></div><button class="btn-secondary text-xs py-1.5 px-3">Enable</button></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Session Timeout</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Auto-logout after inactivity</div></div><select class="form-select select2-init" style="width:auto;padding:7px 32px 7px 10px;font-size:.8rem"><option>30 minutes</option><option>1 hour</option><option>4 hours</option></select></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div data-tab-group="settings" data-tab-content="notifications" class="hidden">
+        <div class="card">
+          <div class="text-base font-semibold text-main mb-4">Email Notifications</div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">New Orders</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Get notified when new orders are placed</div></div><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Low Stock Alerts</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Notify when product stock is below threshold</div></div><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">User Registrations</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Alert on new user sign-ups</div></div><label class="toggle"><input type="checkbox"/><span class="toggle-slider"></span></label></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Payment Failures</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Immediately alert on failed payments</div></div><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+            <div style="height:1px;background:rgba(99,102,241,.07)"></div>
+            <div class="flex items-center justify-between"><div><div class="text-sm font-medium text-main">Weekly Report</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Receive weekly summary every Monday</div></div><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Billing -->
+      <div data-tab-group="settings" data-tab-content="billing" class="hidden">
+        <div class="card mb-4">
+          <div class="flex items-center justify-between mb-4">
+            <div class="text-base font-semibold text-main">Current Plan</div>
+            <span class="tag chip-indigo">Enterprise</span>
+          </div>
+          <div class="flex items-end gap-2 mb-2"><span class="text-4xl font-bold text-main">$199</span><span style="color:var(--text-muted)">/month</span></div>
+          <div class="text-sm mb-4" style="color:var(--text-muted)">Renews on May 7, 2026 • Billed annually</div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+            <div class="p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color)"><div class="text-xs mb-1" style="color:var(--text-muted)">Users</div><div class="text-sm font-semibold text-main">Unlimited</div></div>
+            <div class="p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color)"><div class="text-xs mb-1" style="color:var(--text-muted)">Storage</div><div class="text-sm font-semibold text-main">500 GB</div></div>
+            <div class="p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color)"><div class="text-xs mb-1" style="color:var(--text-muted)">Support</div><div class="text-sm font-semibold text-main">24/7 Priority</div></div>
+          </div>
+          <div class="flex gap-2">
+            <button class="btn-secondary text-sm">Change Plan</button>
+            <button class="btn-danger text-sm" onclick="showToast('Please contact support to cancel','warning')">Cancel Subscription</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="text-base font-semibold text-main mb-4">Payment Method</div>
+          <div class="flex items-center gap-4 p-4 rounded-xl mb-4" style="background:rgba(30,41,59,.8);border:1px solid var(--border-color)">
+            <div class="w-12 h-8 rounded-md flex items-center justify-center" style="background:linear-gradient(135deg,#1a1aff,#0000aa)"><span class="text-main text-xs font-bold">VISA</span></div>
+            <div><div class="text-sm font-medium text-main">•••• •••• •••• 4242</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Expires 12/2027</div></div>
+            <button class="btn-ghost text-xs py-1.5 px-3 ml-auto">Change</button>
+          </div>
+          <button class="btn-secondary text-sm flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>Add Payment Method</button>
+        </div>
+      </div>
+
+      <!-- Integrations -->
+      <div data-tab-group="settings" data-tab-content="integrations" class="hidden">
+        <div class="card">
+          <div class="text-base font-semibold text-main mb-4">Connected Integrations</div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-4 p-4 rounded-xl" style="background:rgba(30,41,59,.6);border:1px solid rgba(99,102,241,.08)">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:#fff"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C4 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 4 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></div>
+              <div class="flex-1"><div class="text-sm font-medium text-main">Google Analytics</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Track website traffic and conversions</div></div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="flex items-center gap-4 p-4 rounded-xl" style="background:rgba(30,41,59,.6);border:1px solid rgba(99,102,241,.08)">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:#635BFF"><svg width="20" height="20" viewBox="0 0 32 32" fill="white"><path d="M13.3 21.3c-3.3 0-5.6-1.6-6.7-4.1L2.3 19c1.8 4.3 5.7 7 11 7 3.2 0 5.6-1 7.4-2.7L24 25.8V19h-6.8l2.1 2.1c-.9.7-2.4 1.2-4 1.2zm5.1-19c-2.8 0-5.3 1-7 2.6L9.1 6.2V13H16v-5.1c1-.8 2.3-1.3 3.8-1.3 3 0 5 1.7 6 4l4.2-1.8c-1.5-4-5.2-6.5-9.9-6.5-.3 0-.6 0-.7.1z"/></svg></div>
+              <div class="flex-1"><div class="text-sm font-medium text-main">Stripe Payments</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Process online payments securely</div></div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="flex items-center gap-4 p-4 rounded-xl" style="background:rgba(30,41,59,.6);border:1px solid rgba(99,102,241,.08)">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:#E01E5A"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M5.042 15.165a2.528 2.528 0 01-2.52 2.524A2.528 2.528 0 010 15.165a2.527 2.527 0 012.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 012.521-2.52 2.527 2.527 0 012.521 2.52v6.313A2.528 2.528 0 018.834 24a2.528 2.528 0 01-2.521-2.522v-6.313z"/><path d="M8.834 5.042a2.528 2.528 0 01-2.521-2.52A2.528 2.528 0 018.834 0a2.528 2.528 0 012.521 2.522v2.52H8.834z"/></svg></div>
+              <div class="flex-1"><div class="text-sm font-medium text-main">Slack Notifications</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Send alerts to your Slack workspace</div></div>
+              <label class="toggle"><input type="checkbox"/><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+          <button class="btn-secondary text-sm mt-4 flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>Add Integration</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div id="toast-container" style="position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:200"></div>
+<script src="assets/js/main.js"></script>
+
+<!-- Large Modal -->
+<div class="modal-overlay" id="large-modal">
+  <div class="modal-box modal-lg">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Large Data Modal</h2>
+      <button class="btn-icon" data-modal-close="large-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="space-y-4 text-sm" style="color:var(--text-muted)">
+      <p>This modal spans a wider area, accommodating detailed tables or complex forms.</p>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-primary ml-auto" data-modal-close="large-modal">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box" style="max-width:400px;text-align:center">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(244,63,94,.15)">
+      <svg width="24" height="24" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h2 class="text-xl font-bold text-main mb-2">Are you sure?</h2>
+    <p class="text-sm mb-6" style="color:var(--text-muted)">Do you really want to delete this? This action cannot be undone.</p>
+    <div class="flex gap-3">
+      <button class="btn-ghost flex-1" data-modal-close="delete-modal">Cancel</button>
+      <button class="btn-danger flex-1" onclick="showToast('Item deleted successfully!', 'success');closeModal('delete-modal')">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

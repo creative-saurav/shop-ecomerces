@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard — AdminKit</title>
+<meta name="description" content="AdminKit — Professional admin dashboard starter kit with analytics, orders, users management."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/css/main.css"/>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+
+<!-- Sidebar overlay -->
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+<nav id="sidebar">
+  <div style="display:flex;flex-direction:column;flex:1;overflow-y:auto;padding:0 8px">
+    <div class="flex items-center gap-3 px-2 py-5">
+      <div class="sidebar-logo-icon flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
+           style="background:linear-gradient(135deg,#6366f1,#4f46e5);box-shadow:0 4px 16px rgba(99,102,241,.4)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="sidebar-logo-text">
+        <div class="font-bold text-main text-sm">AdminKit</div>
+        <div class="text-xs" style="color:var(--text-muted)">Enterprise v1.0</div>
+      </div>
+    </div>
+    <div class="nav-section-title">Main</div>
+    <a href="index.html" class="nav-item active"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="analytics.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span class="nav-label">Analytics</span></a>
+    <a href="orders.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="nav-label">Orders</span><span class="nav-badge">24</span></a>
+    <a href="products.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><span class="nav-label">Products</span></a>
+    <div class="nav-section-title">People</div>
+    <a href="users.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg><span class="nav-label">Users</span><span class="nav-badge">1.2k</span></a>
+    <a href="profile.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">My Profile</span></a>
+    <div class="nav-section-title">System</div>
+    <a href="settings.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span class="nav-label">Settings</span></a>
+    <a href="login.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="nav-label">Logout</span></a>
+  </div>
+  <div style="padding:12px">
+    <a href="profile.html" class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color);text-decoration:none">
+      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" class="avatar avatar-sm shrink-0" style="background:var(--bg-card-hover)" alt="Admin">
+      <div class="sidebar-logo-text overflow-hidden">
+        <div class="text-sm font-semibold text-main truncate">Alex Morgan</div>
+        <div class="text-xs truncate" style="color:var(--text-muted)">Super Admin</div>
+      </div>
+    </a>
+  </div>
+</nav>
+
+<!-- ── TOPBAR ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button id="sidebar-toggle" class="btn-icon mr-1" title="Toggle sidebar">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <div class="search-bar">
+    <svg width="15" height="15" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="global-search" type="text" placeholder="Search anything… (⌘K)"/>
+    <span style="font-size:.7rem;color:#334155;background:var(--bg-card-hover);padding:2px 6px;border-radius:4px">⌘K</span>
+  </div>
+
+  <div class="flex items-center gap-2 ml-auto">
+    <!-- Theme toggle -->
+    <button id="theme-toggle" class="btn-icon" title="Switch to Dark Mode">
+      <!-- Sun icon (shown in light mode) -->
+      <svg class="icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <!-- Moon icon (shown in dark mode) -->
+      <svg class="icon-moon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+
+    <!-- Notifications -->
+    <div class="relative">
+      <button class="btn-icon" data-dropdown="notif-dropdown">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        <span id="notif-badge" style="position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#f43f5e;border-radius:50%;font-size:.6rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg-topbar)">4</span>
+      </button>
+      <div class="dropdown" id="notif-dropdown" style="min-width:300px">
+        <div class="flex items-center justify-between px-3 pb-2 mb-1" style="border-bottom:1px solid rgba(99,102,241,.08)">
+          <span class="text-sm font-semibold text-main">Notifications</span>
+          <span class="tag chip-indigo">4 new</span>
+        </div>
+        <div class="dropdown-item gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style="background:rgba(16,185,129,.15)"><svg width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><div class="text-sm text-main">New order #4521 placed</div><div class="text-xs" style="color:var(--text-muted)">2 min ago</div></div>
+        </div>
+        <div class="dropdown-item gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style="background:rgba(99,102,241,.15)"><svg width="14" height="14" fill="none" stroke="#818cf8" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div><div class="text-sm text-main">Sarah joined as editor</div><div class="text-xs" style="color:var(--text-muted)">18 min ago</div></div>
+        </div>
+        <div class="dropdown-item gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style="background:rgba(245,158,11,.15)"><svg width="14" height="14" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div><div class="text-sm text-main">Low stock: iPhone 15 Pro</div><div class="text-xs" style="color:var(--text-muted)">1 hr ago</div></div>
+        </div>
+        <div class="dropdown-item gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style="background:rgba(244,63,94,.15)"><svg width="14" height="14" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+          <div><div class="text-sm text-main">Payment failed – Order #4490</div><div class="text-xs" style="color:var(--text-muted)">3 hr ago</div></div>
+        </div>
+        <div style="padding:8px 4px 4px;border-top:1px solid rgba(99,102,241,.08);margin-top:4px">
+          <a href="#" class="dropdown-item justify-center text-xs" style="color:#818cf8">View all notifications →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- User avatar -->
+    <div class="relative">
+      <button data-dropdown="user-dropdown" class="flex items-center gap-2 px-2 py-1 rounded-xl" style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.12)">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" class="avatar" style="width:28px;height:28px;background:var(--bg-card-hover)" alt="Admin">
+        <div class="hidden sm:block text-left">
+          <div class="text-xs font-semibold text-main">Alex Morgan</div>
+          <div class="text-xs" style="color:var(--text-muted)">Super Admin</div>
+        </div>
+        <svg width="12" height="12" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="dropdown" id="user-dropdown">
+        <a href="profile.html" class="dropdown-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
+        <a href="settings.html" class="dropdown-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+        <div class="dropdown-divider"></div>
+        <a href="login.html" class="dropdown-item" style="color:#fda4af"><svg width="14" height="14" fill="none" stroke="#fda4af" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN CONTENT ────────────────────────────────────────── -->
+<main id="main-content" class="page-enter">
+
+  <!-- Header row -->
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-main">Dashboard</h1>
+      <div class="breadcrumb mt-1">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="current">Dashboard</span>
+      </div>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      <select class="form-select select2-init" style="width:auto;padding:8px 36px 8px 12px;font-size:.8rem">
+        <option>Last 30 days</option><option>Last 7 days</option><option>This year</option>
+      </select>
+      <button class="btn-primary flex items-center gap-2">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>
+        New Report
+      </button>
+      <button class="btn-secondary flex items-center gap-2" data-modal-open="large-modal">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        View Details
+      </button>
+    </div>
+  </div>
+
+  <!-- ── STAT CARDS ── -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6 stagger-children">
+    <!-- Revenue -->
+    <div class="card stat-card" style="color:#6366f1">
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(99,102,241,.15)">
+          <svg width="18" height="18" fill="none" stroke="#818cf8" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <span class="tag chip-emerald text-xs">↑ 12.5%</span>
+      </div>
+      <div class="text-3xl font-bold text-main mb-1" data-count="94280" data-prefix="$" data-suffix=""></div>
+      <div class="text-sm" style="color:var(--text-muted)">Total Revenue</div>
+      <div class="mini-bar mt-3" data-sparkline="40,65,45,80,60,90,75,95" data-color="#6366f1"></div>
+    </div>
+    <!-- Orders -->
+    <div class="card stat-card" style="color:#10b981">
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,.15)">
+          <svg width="18" height="18" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <span class="tag chip-emerald text-xs">↑ 8.2%</span>
+      </div>
+      <div class="text-3xl font-bold text-main mb-1" data-count="3842"></div>
+      <div class="text-sm" style="color:var(--text-muted)">Total Orders</div>
+      <div class="mini-bar mt-3" data-sparkline="55,70,48,85,65,78,90,72" data-color="#10b981"></div>
+    </div>
+    <!-- Users -->
+    <div class="card stat-card" style="color:#f59e0b">
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,.15)">
+          <svg width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <span class="tag chip-emerald text-xs">↑ 3.1%</span>
+      </div>
+      <div class="text-3xl font-bold text-main mb-1" data-count="12459"></div>
+      <div class="text-sm" style="color:var(--text-muted)">Active Users</div>
+      <div class="mini-bar mt-3" data-sparkline="30,45,60,40,70,55,80,65" data-color="#f59e0b"></div>
+    </div>
+    <!-- Conversion -->
+    <div class="card stat-card" style="color:#f43f5e">
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(244,63,94,.15)">
+          <svg width="18" height="18" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <span class="tag chip-rose text-xs">↓ 1.4%</span>
+      </div>
+      <div class="text-3xl font-bold text-main mb-1" data-count="3.6" data-suffix="%"></div>
+      <div class="text-sm" style="color:var(--text-muted)">Conversion Rate</div>
+      <div class="mini-bar mt-3" data-sparkline="70,50,65,40,55,45,50,42" data-color="#f43f5e"></div>
+    </div>
+  </div>
+
+  <!-- ── CHARTS ROW 1 ── -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+    <!-- Revenue Chart -->
+    <div class="card lg:col-span-2">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+        <div>
+          <div class="text-base font-semibold text-main">Revenue Overview</div>
+          <div class="text-xs mt-0.5" style="color:var(--text-muted)">Annual revenue vs expenses</div>
+        </div>
+        <div class="flex gap-2">
+          <button class="btn-secondary text-xs py-1.5 px-3">Monthly</button>
+          <button class="btn-ghost text-xs py-1.5 px-3">Quarterly</button>
+        </div>
+      </div>
+      <div class="chart-wrapper" style="height:260px">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Traffic Donut -->
+    <div class="card">
+      <div class="text-base font-semibold text-main mb-1">Traffic Sources</div>
+      <div class="text-xs mb-4" style="color:var(--text-muted)">Where your visits come from</div>
+      <div class="chart-wrapper" style="height:180px">
+        <canvas id="trafficChart"></canvas>
+      </div>
+      <div class="mt-4 space-y-2">
+        <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#6366f1"></span><span style="color:var(--text-muted-light)">Organic</span></span><span class="text-main font-medium">38%</span></div>
+        <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#10b981"></span><span style="color:var(--text-muted-light)">Direct</span></span><span class="text-main font-medium">24%</span></div>
+        <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#f59e0b"></span><span style="color:var(--text-muted-light)">Social</span></span><span class="text-main font-medium">18%</span></div>
+        <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#06b6d4"></span><span style="color:var(--text-muted-light)">Referral</span></span><span class="text-main font-medium">12%</span></div>
+        <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#f43f5e"></span><span style="color:var(--text-muted-light)">Email</span></span><span class="text-main font-medium">8%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHARTS ROW 2 ── -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+    <div class="card">
+      <div class="text-base font-semibold text-main mb-1">Weekly Orders</div>
+      <div class="text-xs mb-4" style="color:var(--text-muted)">Orders vs returns this week</div>
+      <div class="chart-wrapper" style="height:220px"><canvas id="ordersChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="text-base font-semibold text-main mb-1">User Growth</div>
+      <div class="text-xs mb-4" style="color:var(--text-muted)">New users vs churn monthly</div>
+      <div class="chart-wrapper" style="height:220px"><canvas id="userGrowthChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ── CHARTS ROW 3 ── -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+    <div class="card">
+      <div class="text-base font-semibold text-main mb-1">Sales by Category</div>
+      <div class="text-xs mb-4" style="color:var(--text-muted)">Revenue distribution across product categories</div>
+      <div class="chart-wrapper" style="height:240px"><canvas id="categoryChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="text-base font-semibold text-main mb-1">Conversion Funnel</div>
+      <div class="text-xs mb-4" style="color:var(--text-muted)">Visitors to advocates — funnel breakdown</div>
+      <div class="chart-wrapper" style="height:240px"><canvas id="funnelChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ── BOTTOM ROW ── -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <!-- Recent Orders Table -->
+    <div class="card lg:col-span-2">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div class="text-base font-semibold text-main">Recent Orders</div>
+        <a href="orders.html" class="text-xs font-medium" style="color:#818cf8">View all →</a>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order ID</th><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="searchable-row">
+              <td class="font-mono text-xs" style="color:#818cf8">#4521</td>
+              <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u1" class="avatar" style="width:24px;height:24px;background:var(--bg-card-hover)" alt=""><span>Sarah Connor</span></div></td>
+              <td>iPhone 15 Pro</td><td class="font-semibold text-main">$1,299</td>
+              <td><span class="tag chip-emerald">Delivered</span></td>
+              <td><button class="btn-icon" onclick="openDeleteModal('#4521')" title="Delete order" style="width:30px;height:30px;color:#f43f5e;border-color:rgba(244,63,94,0.2)"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>
+            </tr>
+            <tr class="searchable-row">
+              <td class="font-mono text-xs" style="color:#818cf8">#4520</td>
+              <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u2" class="avatar" style="width:24px;height:24px;background:var(--bg-card-hover)" alt=""><span>John Doe</span></div></td>
+              <td>MacBook Pro M3</td><td class="font-semibold text-main">$2,499</td>
+              <td><span class="tag chip-indigo">Processing</span></td>
+              <td><button class="btn-icon" onclick="openDeleteModal('#4520')" title="Delete order" style="width:30px;height:30px;color:#f43f5e;border-color:rgba(244,63,94,0.2)"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>
+            </tr>
+            <tr class="searchable-row">
+              <td class="font-mono text-xs" style="color:#818cf8">#4519</td>
+              <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u3" class="avatar" style="width:24px;height:24px;background:var(--bg-card-hover)" alt=""><span>Emily Zhang</span></div></td>
+              <td>AirPods Pro</td><td class="font-semibold text-main">$249</td>
+              <td><span class="tag chip-amber">Pending</span></td>
+              <td><button class="btn-icon" onclick="openDeleteModal('#4519')" title="Delete order" style="width:30px;height:30px;color:#f43f5e;border-color:rgba(244,63,94,0.2)"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>
+            </tr>
+            <tr class="searchable-row">
+              <td class="font-mono text-xs" style="color:#818cf8">#4518</td>
+              <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u4" class="avatar" style="width:24px;height:24px;background:var(--bg-card-hover)" alt=""><span>Mark Wilson</span></div></td>
+              <td>iPad Air</td><td class="font-semibold text-main">$749</td>
+              <td><span class="tag chip-rose">Cancelled</span></td>
+              <td><button class="btn-icon" onclick="openDeleteModal('#4518')" title="Delete order" style="width:30px;height:30px;color:#f43f5e;border-color:rgba(244,63,94,0.2)"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>
+            </tr>
+            <tr class="searchable-row">
+              <td class="font-mono text-xs" style="color:#818cf8">#4517</td>
+              <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u5" class="avatar" style="width:24px;height:24px;background:var(--bg-card-hover)" alt=""><span>Lisa Park</span></div></td>
+              <td>Apple Watch Ultra</td><td class="font-semibold text-main">$799</td>
+              <td><span class="tag chip-emerald">Delivered</span></td>
+              <td><button class="btn-icon" onclick="openDeleteModal('#4517')" title="Delete order" style="width:30px;height:30px;color:#f43f5e;border-color:rgba(244,63,94,0.2)"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="card">
+      <div class="flex items-center justify-between mb-4">
+        <div class="text-base font-semibold text-main">Top Products</div>
+        <a href="products.html" class="text-xs font-medium" style="color:#818cf8">See all →</a>
+      </div>
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-muted-light)">iPhone 15 Pro</span><span class="text-main font-semibold">42%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="background:#6366f1;width:0" data-width="42%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-muted-light)">MacBook Pro M3</span><span class="text-main font-semibold">31%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="background:#10b981;width:0" data-width="31%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-muted-light)">AirPods Pro</span><span class="text-main font-semibold">18%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="background:#f59e0b;width:0" data-width="18%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-muted-light)">iPad Air</span><span class="text-main font-semibold">6%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="background:#06b6d4;width:0" data-width="6%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-muted-light)">Apple Watch</span><span class="text-main font-semibold">3%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="background:#f43f5e;width:0" data-width="3%"></div></div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 gap-3 mt-6">
+        <div class="p-3 rounded-xl text-center" style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.12)">
+          <div class="text-lg font-bold" style="color:#818cf8">98.2%</div>
+          <div class="text-xs mt-0.5" style="color:var(--text-muted)">Uptime</div>
+        </div>
+        <div class="p-3 rounded-xl text-center" style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.12)">
+          <div class="text-lg font-bold" style="color:#10b981">4.8★</div>
+          <div class="text-xs mt-0.5" style="color:var(--text-muted)">Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── TOAST CONTAINER ─────────────────────────────────────── -->
+<div id="toast-container" style="position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:200"></div>
+
+<!-- ── SCRIPTS ─────────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/charts.js"></script>
+<script>
+  // Demo toast on load
+  setTimeout(() => showToast('Welcome back, Alex! 👋', 'success'), 800);
+</script>
+
+<!-- Large Modal -->
+<div class="modal-overlay" id="large-modal">
+  <div class="modal-box modal-lg">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Order Details — Full View</h2>
+      <button class="btn-icon" data-modal-close="large-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+      <div class="p-4 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color)">
+        <div class="text-xs mb-1" style="color:var(--text-muted)">Order ID</div>
+        <div class="font-semibold text-main">#4521</div>
+      </div>
+      <div class="p-4 rounded-xl" style="background:rgba(16,185,129,.06);border:1px solid var(--border-color)">
+        <div class="text-xs mb-1" style="color:var(--text-muted)">Total Amount</div>
+        <div class="font-semibold" style="color:#10b981">$1,299.00</div>
+      </div>
+      <div class="p-4 rounded-xl" style="background:rgba(245,158,11,.06);border:1px solid var(--border-color)">
+        <div class="text-xs mb-1" style="color:var(--text-muted)">Status</div>
+        <span class="tag chip-emerald">Delivered</span>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>SKU</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>iPhone 15 Pro 256GB</td><td class="font-mono text-xs" style="color:#818cf8">IP15PRO-256</td><td>1</td><td>$1,099</td><td class="font-semibold text-main">$1,099</td></tr>
+          <tr><td>MagSafe Case</td><td class="font-mono text-xs" style="color:#818cf8">MGSF-CASE-BLK</td><td>1</td><td>$49</td><td class="font-semibold text-main">$49</td></tr>
+          <tr><td>AppleCare+</td><td class="font-mono text-xs" style="color:#818cf8">AC-IP15-2Y</td><td>1</td><td>$129</td><td class="font-semibold text-main">$129</td></tr>
+          <tr><td>Express Shipping</td><td class="font-mono text-xs" style="color:#818cf8">SHIP-EXP</td><td>1</td><td>$22</td><td class="font-semibold text-main">$22</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-ghost" data-modal-close="large-modal">Close</button>
+      <button class="btn-primary ml-auto" onclick="showToast('Invoice downloaded!','success');closeModal('large-modal')">Download Invoice</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box" style="max-width:420px;text-align:center">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(244,63,94,.12)">
+      <svg width="28" height="28" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+    </div>
+    <h2 class="text-xl font-bold text-main mb-2">Delete Confirmation</h2>
+    <p class="text-sm mb-1" style="color:var(--text-muted)">Are you sure you want to delete <strong id="delete-target-label" style="color:var(--text-main)">this item</strong>?</p>
+    <p class="text-xs mb-6" style="color:var(--text-muted)">This action <strong>cannot be undone</strong>. All associated data will be permanently removed.</p>
+    <div class="flex gap-3">
+      <button class="btn-ghost flex-1" data-modal-close="delete-modal">Cancel</button>
+      <button class="btn-danger flex-1" id="confirm-delete-btn" onclick="confirmDeleteAction()">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Login — AdminKit</title>
+<meta name="description" content="Secure admin login — AdminKit dashboard."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<style>
+  .login-bg {
+    position: fixed;
+    inset: 0;
+    background: #080d1a;
+    overflow: hidden;
+  }
+  .login-bg::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+    top: -100px; left: -100px;
+    animation: pulse-slow 8s ease-in-out infinite alternate;
+  }
+  .login-bg::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
+    bottom: -80px; right: -80px;
+    animation: pulse-slow 10s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes pulse-slow {
+    0%   { transform: scale(1) translate(0,0); }
+    100% { transform: scale(1.15) translate(20px,20px); }
+  }
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .login-card {
+    background: rgba(15,23,42,0.85);
+    border: 1px solid rgba(99,102,241,0.15);
+    border-radius: 24px;
+    padding: 40px;
+    width: min(440px, 92vw);
+    backdrop-filter: blur(24px);
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.5s ease;
+  }
+
+  /* floating orbs */
+  .orb { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body style="margin:0;padding:0;min-height:100vh;background:#ffffff;font-family:'Inter',sans-serif">
+  <div class="login-container">
+    <!-- Left Side - Branding & Features -->
+    <div class="left-section">
+      <div class="left-content">
+        <!-- Header Logo -->
+        <div class="brand-header">
+          <div class="brand-logo-box">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h2 class="brand-title">AdminKit</h2>
+        </div>
+
+        <!-- Features List -->
+        <div class="features-section mt-16">
+          <h3 class="features-title">Why choose AdminKit?</h3>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h4 class="feature-name">Real-time Analytics</h4>
+              <p class="feature-desc">Monitor your business metrics instantly</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="feature-name">Bank-level Security</h4>
+              <p class="feature-desc">Your data is protected with encryption</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"></circle>
+                <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="feature-name">24/7 Support</h4>
+              <p class="feature-desc">Our team is always here to help</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="left-footer">
+          <p class="footer-text">Join 10,000+ teams already on AdminKit</p>
+          <div class="avatar-stack">
+            <span class="avatar" style="background:linear-gradient(135deg,#10b981,#059669)">JD</span>
+            <span class="avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">AC</span>
+            <span class="avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">MK</span>
+            <span class="avatar-count">+10K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="right-section">
+      <div class="form-wrapper">
+        <!-- Form Header -->
+        <div class="form-header">
+          <h1 class="form-title">Sign in to your account</h1>
+          <p class="form-subtitle">Welcome back! Please login to your account</p>
+        </div>
+
+        <!-- Quick Access Buttons -->
+        <div class="quick-access">
+          <button class="quick-btn" onclick="showToast('Google login coming soon','info')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C4 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 4 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          </button>
+          <button class="quick-btn" onclick="showToast('GitHub login coming soon','info')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider-line">
+          <span>or</span>
+        </div>
+
+        <!-- Login Form -->
+        <form onsubmit="handleLogin(event)" class="login-form">
+          <!-- Email -->
+          <div class="form-field">
+            <label for="login-email" class="field-label">Email</label>
+            <input 
+              id="login-email" 
+              type="email" 
+              placeholder="you@company.com" 
+              class="field-input"
+              required
+            />
+          </div>
+
+          <!-- Password -->
+          <div class="form-field">
+            <div class="field-label-row">
+              <label for="login-password" class="field-label">Password</label>
+              <a href="#" class="forgot-link" onclick="showToast('Password reset email sent','success');return false">Forgot?</a>
+            </div>
+            <input 
+              id="login-password" 
+              type="password" 
+              placeholder="••••••••" 
+              class="field-input"
+              required
+            />
+          </div>
+
+          <!-- Remember Me -->
+          <div class="form-checkbox">
+            <input type="checkbox" id="remember" checked />
+            <label for="remember">Remember me</label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+
+        <!-- Sign Up Link -->
+        <p class="signup-link">
+          Don't have an account?
+          <a href="#" onclick="showToast('Contact your administrator for access','info');return false">Request Access</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; }
+
+    .login-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* LEFT SECTION */
+    .left-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-section::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+      animation: float-bg 8s ease-in-out infinite;
+    }
+
+    .left-section::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -80px;
+      left: -80px;
+      animation: float-bg-reverse 10s ease-in-out infinite;
+    }
+
+    @keyframes float-bg {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-30px) translateX(20px); }
+    }
+
+    @keyframes float-bg-reverse {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(30px) translateX(-20px); }
+    }
+
+    .left-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .brand-logo-box {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .features-section {
+      margin: 0;
+    }
+
+    .features-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 24px 0;
+      opacity: 0.95;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+    }
+
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      opacity: 0.9;
+    }
+
+    .feature-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      margin: 0;
+      opacity: 0.8;
+    }
+
+    .left-footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-text {
+      font-size: 13px;
+      margin: 0 0 12px 0;
+      opacity: 0.85;
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+      gap: -8px;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: white;
+      border: 2px solid white;
+      margin-left: -8px;
+      first-of-type: { margin-left: 0; }
+    }
+
+    .avatar-count {
+      margin-left: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* RIGHT SECTION */
+    .right-section {
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .form-wrapper {
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .form-header {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .form-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .form-subtitle {
+      font-size: 14px;
+      color: #718096;
+      margin: 0;
+    }
+
+    .quick-access {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .quick-btn {
+      padding: 12px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4a5568;
+    }
+
+    .quick-btn:hover {
+      border-color: #cbd5e1;
+      background: #f7fafc;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .divider-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0;
+      color: #a0aec0;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .divider-line::before,
+    .divider-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2d3748;
+      text-transform: capitalize;
+    }
+
+    .forgot-link {
+      font-size: 12px;
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .forgot-link:hover {
+      color: #764ba2;
+    }
+
+    .field-input {
+      padding: 11px 14px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      background: white;
+      color: #2d3748;
+    }
+
+    .field-input::placeholder {
+      color: #a0aec0;
+    }
+
+    .field-input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: white;
+    }
+
+    .form-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-checkbox input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: #667eea;
+    }
+
+    .form-checkbox label {
+      font-size: 13px;
+      color: #4a5568;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .submit-btn {
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .signup-link {
+      text-align: center;
+      font-size: 13px;
+      color: #718096;
+      margin: 0;
+    }
+
+    .signup-link a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .signup-link a:hover {
+      color: #764ba2;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .login-container {
+        grid-template-columns: 1fr;
+      }
+
+      .left-section {
+        display: none;
+      }
+
+      .form-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+
+  <div id="toast-container" style="position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:200"></div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.textContent = 'Signing in…';
+      btn.disabled = true;
+      setTimeout(() => {
+        showToast('Login successful! Redirecting…', 'success');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+      }, 1000);
+    }
+  </script>
+
+<!-- Large Modal -->
+<div class="modal-overlay" id="large-modal">
+  <div class="modal-box modal-lg">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Large Data Modal</h2>
+      <button class="btn-icon" data-modal-close="large-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="space-y-4 text-sm" style="color:var(--text-muted)">
+      <p>This modal spans a wider area, accommodating detailed tables or complex forms.</p>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-primary ml-auto" data-modal-close="large-modal">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box" style="max-width:400px;text-align:center">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(244,63,94,.15)">
+      <svg width="24" height="24" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h2 class="text-xl font-bold text-main mb-2">Are you sure?</h2>
+    <p class="text-sm mb-6" style="color:var(--text-muted)">Do you really want to delete this? This action cannot be undone.</p>
+    <div class="flex gap-3">
+      <button class="btn-ghost flex-1" data-modal-close="delete-modal">Cancel</button>
+      <button class="btn-danger flex-1" onclick="showToast('Item deleted successfully!', 'success');closeModal('delete-modal')">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

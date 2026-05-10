@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Details - Zipley</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }, colors: { brand: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', } } } } }
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header (Simplified) -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100 py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-heading font-bold text-xl">Z</div>
+                <span class="text-2xl font-heading font-extrabold tracking-tight text-gray-900 hidden md:block">Zipley.</span>
+            </a>
+            <ul class="flex items-center gap-6 text-sm font-medium text-gray-600 font-heading">
+                <li><a href="index.html" class="hover:text-brand-600 transition">Home</a></li>
+                <li><a href="category.html" class="hover:text-brand-600 transition">Shop</a></li>
+                <li><a href="bloglist.html" class="text-brand-600 transition">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex text-sm text-gray-500 mb-8">
+            <ol class="flex items-center space-x-2">
+                <li><a href="index.html" class="hover:text-brand-600">Home</a></li>
+                <li><i class="ph-bold ph-caret-right text-xs"></i></li>
+                <li><a href="bloglist.html" class="hover:text-brand-600">Blog</a></li>
+                <li><i class="ph-bold ph-caret-right text-xs"></i></li>
+                <li class="text-gray-800 font-medium truncate max-w-[200px] md:max-w-none">The Ultimate Guide to Choosing the Right Laptop</li>
+            </ol>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Main Content -->
+            <div class="w-full lg:w-2/3">
+                <article class="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-gray-100">
+                    
+                    <div class="mb-8">
+                        <span class="inline-block bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full mb-4">Tech & Gadgets</span>
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-gray-900 leading-tight mb-6">The Ultimate Guide to Choosing the Right Laptop for Work and Play</h1>
+                        
+                        <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500 border-b border-gray-100 pb-6">
+                            <div class="flex items-center gap-2">
+                                <img src="https://i.pravatar.cc/100?img=11" alt="Author" class="w-8 h-8 rounded-full">
+                                <span class="font-medium text-gray-900">Admin</span>
+                            </div>
+                            <span class="flex items-center gap-1"><i class="ph ph-calendar-blank"></i> October 24, 2026</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-clock"></i> 8 min read</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-chat-circle"></i> 12 Comments</span>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden mb-8 h-[300px] md:h-[500px]">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80" alt="Blog Featured Image" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="prose prose-lg max-w-none text-gray-600 prose-headings:font-heading prose-headings:font-bold prose-headings:text-gray-900 prose-a:text-brand-600 hover:prose-a:text-brand-800">
+                        <p class="lead text-xl text-gray-700 font-medium mb-6">With so many options on the market, finding the perfect laptop can be overwhelming. Whether you need a machine for heavy video editing, coding, or just casual browsing and Netflix, this guide breaks down everything you need to know.</p>
+                        
+                        <h2 class="text-2xl mt-8 mb-4">1. Identify Your Primary Use Case</h2>
+                        <p>The first step in choosing a laptop is understanding what you’ll be using it for. Laptops generally fall into a few categories:</p>
+                        <ul class="list-disc pl-5 mb-6 space-y-2">
+                            <li><strong>Everyday Use:</strong> Browsing, checking email, watching videos. (Chromebooks, basic Windows laptops)</li>
+                            <li><strong>Business/Work:</strong> Word processing, spreadsheets, lots of multitasking. (ThinkPads, Dell XPS, MacBooks)</li>
+                            <li><strong>Gaming:</strong> Playing high-end games. Requires dedicated graphics. (Alienware, ASUS ROG)</li>
+                            <li><strong>Creative/Professional:</strong> Video editing, 3D rendering, music production. (MacBook Pro, high-end Windows workstations)</li>
+                        </ul>
+
+                        <h2 class="text-2xl mt-8 mb-4">2. Mac vs. Windows vs. Chrome OS</h2>
+                        <p>Your choice of operating system dictates the entire experience.</p>
+                        <blockquote class="border-l-4 border-brand-500 pl-4 py-2 my-6 bg-brand-50 text-gray-800 font-medium italic rounded-r-lg">
+                            "Windows is the most versatile, Mac offers the best ecosystem and build quality, while Chrome OS is perfect for simplicity and budget."
+                        </blockquote>
+                        
+                        <h2 class="text-2xl mt-8 mb-4">3. Understand the Specs (CPU, RAM, Storage)</h2>
+                        <p>Don't get bogged down by jargon. Here is a quick cheat sheet:</p>
+                        <ul class="list-disc pl-5 mb-6 space-y-2">
+                            <li><strong>CPU:</strong> The brain. Core i5 or Ryzen 5 is the sweet spot for most users.</li>
+                            <li><strong>RAM:</strong> Short-term memory. Do not buy a laptop with less than 8GB of RAM. 16GB is highly recommended for longevity.</li>
+                            <li><strong>Storage:</strong> Long-term memory. Make sure it has an SSD (Solid State Drive), not an HDD. 256GB is the absolute minimum, 512GB is preferred.</li>
+                        </ul>
+
+                        <div class="bg-gray-50 rounded-xl p-6 my-8 border border-gray-200">
+                            <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">Pro Tip: Don't ignore the display!</h3>
+                            <p class="text-sm">You will spend hours looking at the screen. Make sure it is at least 1080p (Full HD). If you are a creator, look for high color accuracy (sRGB or DCI-P3 coverage).</p>
+                        </div>
+
+                        <h2 class="text-2xl mt-8 mb-4">Conclusion</h2>
+                        <p>Choosing the right laptop boils down to balancing your budget with your needs. Don't overpay for specs you won't use, but don't underpay and end up with a frustratingly slow machine. Happy shopping!</p>
+                    </div>
+
+                    <!-- Tags and Share -->
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-12 pt-8 border-t border-gray-100">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-sm font-bold text-gray-900 mr-2">Tags:</span>
+                            <a href="#" class="px-3 py-1 bg-gray-100 hover:bg-brand-50 hover:text-brand-600 rounded text-xs font-medium text-gray-600 transition">Laptop</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 hover:bg-brand-50 hover:text-brand-600 rounded text-xs font-medium text-gray-600 transition">Guide</a>
+                            <a href="#" class="px-3 py-1 bg-gray-100 hover:bg-brand-50 hover:text-brand-600 rounded text-xs font-medium text-gray-600 transition">Tech</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-gray-900">Share:</span>
+                            <button class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="ph-fill ph-facebook-logo"></i></button>
+                            <button class="w-8 h-8 rounded-full bg-sky-100 text-sky-500 flex items-center justify-center hover:bg-sky-500 hover:text-white transition"><i class="ph-fill ph-twitter-logo"></i></button>
+                            <button class="w-8 h-8 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center hover:bg-blue-800 hover:text-white transition"><i class="ph-fill ph-linkedin-logo"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Author Box -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 mt-8 flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Author" class="w-24 h-24 rounded-full border-4 border-brand-50 shadow-md">
+                    <div>
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">Written by Admin</h3>
+                        <p class="text-gray-600 text-sm mb-4">Tech enthusiast, gadget reviewer, and software engineer. I love breaking down complex tech topics into easy-to-understand guides.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm hover:underline">View all posts by Admin <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-gray-100 mt-8">
+                    <h3 class="text-2xl font-heading font-bold text-gray-900 mb-8">Comments (2)</h3>
+                    
+                    <div class="space-y-8 mb-10">
+                        <div class="flex gap-4">
+                            <img src="https://i.pravatar.cc/100?img=33" alt="User" class="w-12 h-12 rounded-full">
+                            <div>
+                                <div class="flex items-center gap-3 mb-1">
+                                    <h4 class="font-bold text-gray-900">Michael Scott</h4>
+                                    <span class="text-xs text-gray-400">Oct 25, 2026 at 2:30 PM</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-2">This was incredibly helpful! I was torn between getting a Mac or a Windows laptop, but the breakdown of the operating systems helped me make a decision. Going with Windows!</p>
+                                <button class="text-brand-600 text-xs font-bold hover:underline">Reply</button>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <img src="https://i.pravatar.cc/100?img=47" alt="User" class="w-12 h-12 rounded-full">
+                            <div>
+                                <div class="flex items-center gap-3 mb-1">
+                                    <h4 class="font-bold text-gray-900">Jane Smith</h4>
+                                    <span class="text-xs text-gray-400">Oct 26, 2026 at 9:15 AM</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-2">Great article. I would also add that checking the keyboard quality is important if you type a lot. Some of the newer thin laptops have terrible keyboards.</p>
+                                <button class="text-brand-600 text-xs font-bold hover:underline">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-heading font-bold text-gray-900 mb-6 border-t border-gray-100 pt-8">Leave a Comment</h3>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name *" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-500 focus:bg-white transition">
+                            <input type="email" placeholder="Your Email *" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-500 focus:bg-white transition">
+                        </div>
+                        <textarea rows="5" placeholder="Your Comment *" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-500 focus:bg-white transition resize-none"></textarea>
+                        <div class="flex items-start gap-2 mb-4">
+                            <input type="checkbox" id="saveInfo" class="mt-1 rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <label for="saveInfo" class="text-sm text-gray-600">Save my name and email in this browser for the next time I comment.</label>
+                        </div>
+                        <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-8 rounded-lg transition shadow-md">Post Comment</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar (Right Side) -->
+            <aside class="w-full lg:w-1/3 space-y-8">
+                
+                <!-- Search -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-100">Search</h3>
+                    <form class="relative">
+                        <input type="text" placeholder="Search..." class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-4 pr-10 py-3 text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition-colors">
+                        <button type="submit" class="absolute right-3 top-3 text-gray-400 hover:text-brand-600"><i class="ph-bold ph-magnifying-glass text-lg"></i></button>
+                    </form>
+                </div>
+
+                <!-- Categories -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-100">Categories</h3>
+                    <ul class="space-y-3 text-sm text-gray-600 font-medium">
+                        <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Tech & Gadgets <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">24</span></a></li>
+                        <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Fashion & Trends <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">18</span></a></li>
+                        <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Smart Home <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">12</span></a></li>
+                        <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Lifestyle <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">09</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Related Posts -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-100">Related Posts</h3>
+                    <div class="space-y-5">
+                        <div class="flex gap-4 group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=150&q=80" alt="Recent" class="w-16 h-16 rounded-lg object-cover">
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm line-clamp-2 group-hover:text-brand-600 transition leading-tight mb-1">How to Build a Smart Home on a Budget</h4>
+                                <p class="text-xs text-gray-500"><i class="ph ph-calendar-blank"></i> Oct 15, 2026</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1505934333218-8fe21ff88b67?auto=format&fit=crop&w=150&q=80" alt="Recent" class="w-16 h-16 rounded-lg object-cover">
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm line-clamp-2 group-hover:text-brand-600 transition leading-tight mb-1">5 Easy Tips for a Minimalist Workspace</h4>
+                                <p class="text-xs text-gray-500"><i class="ph ph-calendar-blank"></i> Oct 10, 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+    </main>
+
+</body>
+</html>

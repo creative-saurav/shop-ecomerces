@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Products — AdminKit</title>
+<meta name="description" content="Product catalog management — AdminKit admin dashboard."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/css/main.css"/>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+<nav id="sidebar">
+  <div style="display:flex;flex-direction:column;flex:1;overflow-y:auto;padding:0 8px">
+    <div class="flex items-center gap-3 px-2 py-5"><div class="sidebar-logo-icon flex items-center justify-center w-9 h-9 rounded-xl shrink-0" style="background:linear-gradient(135deg,#6366f1,#4f46e5);box-shadow:0 4px 16px rgba(99,102,241,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="sidebar-logo-text"><div class="font-bold text-main text-sm">AdminKit</div><div class="text-xs" style="color:var(--text-muted)">Enterprise v1.0</div></div></div>
+    <div class="nav-section-title">Main</div>
+    <a href="index.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="analytics.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span class="nav-label">Analytics</span></a>
+    <a href="orders.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="nav-label">Orders</span><span class="nav-badge">24</span></a>
+    <a href="products.html" class="nav-item active"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><span class="nav-label">Products</span></a>
+    <div class="nav-section-title">People</div>
+    <a href="users.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-label">Users</span><span class="nav-badge">1.2k</span></a>
+    <a href="profile.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">My Profile</span></a>
+    <div class="nav-section-title">System</div>
+    <a href="settings.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg><span class="nav-label">Settings</span></a>
+    <a href="login.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="nav-label">Logout</span></a>
+  </div>
+  <div style="padding:12px"><a href="profile.html" class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color);text-decoration:none"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" class="avatar avatar-sm shrink-0" style="background:var(--bg-card-hover)" alt="Admin"><div class="sidebar-logo-text overflow-hidden"><div class="text-sm font-semibold text-main truncate">Alex Morgan</div><div class="text-xs truncate" style="color:var(--text-muted)">Super Admin</div></div></a></div>
+</nav>
+
+<header id="topbar">
+  <button id="sidebar-toggle" class="btn-icon mr-1"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  <div class="search-bar"><svg width="15" height="15" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="global-search" type="text" placeholder="Search products…"/></div>
+  <div class="flex items-center gap-2 ml-auto">
+    <button id="theme-toggle" class="btn-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+    <div class="relative"><button data-dropdown="user-dd-p" class="flex items-center gap-2 px-2 py-1 rounded-xl" style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.12)"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><svg width="12" height="12" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="user-dd-p"><a href="profile.html" class="dropdown-item">My Profile</a><a href="settings.html" class="dropdown-item">Settings</a><div class="dropdown-divider"></div><a href="login.html" class="dropdown-item" style="color:#fda4af">Logout</a></div></div>
+  </div>
+</header>
+
+<main id="main-content" class="page-enter">
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-main">Products</h1>
+      <div class="breadcrumb mt-1"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="current">Products</span></div>
+    </div>
+    <div class="flex gap-2"><button class="btn-ghost text-sm">Import</button><button class="btn-primary flex items-center gap-2 text-sm" data-modal-open="add-product-modal"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>Add Product</button></div>
+  </div>
+
+  <!-- View toggle and filters -->
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+    <div class="flex gap-2">
+      <select class="form-select select2-init" style="width:auto;padding:8px 32px 8px 12px;font-size:.8rem"><option>All Categories</option><option>Electronics</option><option>Clothing</option><option>Food</option></select>
+      <select class="form-select select2-init" style="width:auto;padding:8px 32px 8px 12px;font-size:.8rem"><option>All Status</option><option>In Stock</option><option>Low Stock</option><option>Out of Stock</option></select>
+    </div>
+    <div class="flex gap-2">
+      <button id="grid-view" class="btn-secondary flex items-center gap-1.5 text-sm py-2 px-3" onclick="document.getElementById('products-grid').classList.remove('hidden');document.getElementById('products-list').classList.add('hidden')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Grid
+      </button>
+      <button id="list-view" class="btn-ghost flex items-center gap-1.5 text-sm py-2 px-3" onclick="document.getElementById('products-list').classList.remove('hidden');document.getElementById('products-grid').classList.add('hidden')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>List
+      </button>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 stagger-children">
+    <!-- Product Card -->
+    <div class="card p-0 overflow-hidden group">
+      <div class="relative overflow-hidden" style="height:180px;background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(99,102,241,.05))">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="rgba(99,102,241,.3)" stroke-width="1"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="absolute top-3 left-3"><span class="tag chip-emerald">In Stock</span></div>
+        <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button class="btn-icon" style="width:30px;height:30px;background:var(--bg-card-hover)" onclick="showToast('Added to compare','info')"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="text-xs mb-1" style="color:var(--text-muted)">Electronics</div>
+        <div class="text-sm font-semibold text-main mb-2">iPhone 15 Pro Max</div>
+        <div class="flex items-center justify-between">
+          <div><span class="text-lg font-bold" style="color:#818cf8">$1,299</span><span class="text-xs ml-1 line-through" style="color:#334155">$1,499</span></div>
+          <div class="text-xs" style="color:var(--text-muted)">248 sold</div>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="btn-secondary text-xs py-1.5 flex-1" onclick="showToast('Editing product','info')">Edit</button>
+          <button class="btn-danger text-xs py-1.5 px-3" onclick="openModal('delete-modal')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-0 overflow-hidden group">
+      <div class="relative overflow-hidden" style="height:180px;background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(16,185,129,.05))">
+        <div class="absolute inset-0 flex items-center justify-center"><svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="rgba(16,185,129,.3)" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="absolute top-3 left-3"><span class="tag chip-emerald">In Stock</span></div>
+        <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"><button class="btn-icon" style="width:30px;height:30px;background:var(--bg-card-hover)"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button></div>
+      </div>
+      <div class="p-4">
+        <div class="text-xs mb-1" style="color:var(--text-muted)">Electronics</div>
+        <div class="text-sm font-semibold text-main mb-2">MacBook Pro M3</div>
+        <div class="flex items-center justify-between">
+          <div><span class="text-lg font-bold" style="color:#818cf8">$2,499</span></div>
+          <div class="text-xs" style="color:var(--text-muted)">124 sold</div>
+        </div>
+        <div class="flex gap-2 mt-3"><button class="btn-secondary text-xs py-1.5 flex-1">Edit</button><button class="btn-danger text-xs py-1.5 px-3" onclick="openModal('delete-modal')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div>
+      </div>
+    </div>
+
+    <div class="card p-0 overflow-hidden group">
+      <div class="relative overflow-hidden" style="height:180px;background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(245,158,11,.05))">
+        <div class="absolute inset-0 flex items-center justify-center"><svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="rgba(245,158,11,.3)" stroke-width="1"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3v5z"/><path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3v5z"/></svg></div>
+        <div class="absolute top-3 left-3"><span class="tag chip-amber">Low Stock</span></div>
+        <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"><button class="btn-icon" style="width:30px;height:30px;background:var(--bg-card-hover)"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button></div>
+      </div>
+      <div class="p-4">
+        <div class="text-xs mb-1" style="color:var(--text-muted)">Accessories</div>
+        <div class="text-sm font-semibold text-main mb-2">AirPods Pro (2nd Gen)</div>
+        <div class="flex items-center justify-between"><div><span class="text-lg font-bold" style="color:#818cf8">$249</span></div><div class="text-xs" style="color:#f59e0b">⚠ 5 left</div></div>
+        <div class="flex gap-2 mt-3"><button class="btn-secondary text-xs py-1.5 flex-1">Edit</button><button class="btn-danger text-xs py-1.5 px-3" onclick="openModal('delete-modal')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div>
+      </div>
+    </div>
+
+    <div class="card p-0 overflow-hidden group">
+      <div class="relative overflow-hidden" style="height:180px;background:linear-gradient(135deg,rgba(244,63,94,.1),rgba(244,63,94,.05))">
+        <div class="absolute inset-0 flex items-center justify-center"><svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="rgba(244,63,94,.3)" stroke-width="1"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <div class="absolute top-3 left-3"><span class="tag chip-rose">Out of Stock</span></div>
+      </div>
+      <div class="p-4">
+        <div class="text-xs mb-1" style="color:var(--text-muted)">Electronics</div>
+        <div class="text-sm font-semibold text-main mb-2">iPad Pro 12.9"</div>
+        <div class="flex items-center justify-between"><div><span class="text-lg font-bold" style="color:#818cf8">$1,099</span></div><div class="text-xs" style="color:#f43f5e">Out of stock</div></div>
+        <div class="flex gap-2 mt-3"><button class="btn-secondary text-xs py-1.5 flex-1">Edit</button><button class="btn-danger text-xs py-1.5 px-3" onclick="openModal('delete-modal')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product List (hidden by default) -->
+  <div id="products-list" class="card p-0 overflow-hidden hidden">
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>Product</th><th>SKU</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr class="searchable-row"><td><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(99,102,241,.1)"><svg width="18" height="18" fill="none" stroke="#818cf8" stroke-width="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/></svg></div><div><div class="text-sm font-medium text-main">iPhone 15 Pro Max</div><div class="text-xs" style="color:var(--text-muted)">Apple Inc.</div></div></div></td><td class="font-mono text-xs" style="color:var(--text-muted)">APL-IP15PM</td><td class="text-sm">Electronics</td><td class="font-semibold text-main">$1,299</td><td class="text-sm">248</td><td><span class="tag chip-emerald">In Stock</span></td><td><div class="flex gap-1"><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div></td></tr>
+          <tr class="searchable-row"><td><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,.1)"><svg width="18" height="18" fill="none" stroke="#10b981" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><div><div class="text-sm font-medium text-main">MacBook Pro M3</div><div class="text-xs" style="color:var(--text-muted)">Apple Inc.</div></div></div></td><td class="font-mono text-xs" style="color:var(--text-muted)">APL-MBP-M3</td><td class="text-sm">Electronics</td><td class="font-semibold text-main">$2,499</td><td class="text-sm">124</td><td><span class="tag chip-emerald">In Stock</span></td><td><div class="flex gap-1"><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Add Product Modal -->
+<div class="modal-overlay" id="add-product-modal">
+  <div class="modal-box">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Add New Product</h2>
+      <button class="btn-icon" data-modal-close="add-product-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="space-y-4">
+      <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Product Name</label><input class="form-input" type="text" placeholder="e.g. iPhone 15 Pro"/></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Price</label><input class="form-input" type="number" placeholder="0.00"/></div>
+        <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Stock</label><input class="form-input" type="number" placeholder="0"/></div>
+      </div>
+      <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Category</label><select class="form-select select2-init"><option>Electronics</option><option>Clothing</option><option>Food & Beverage</option><option>Books</option></select></div>
+      <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Description</label><textarea class="form-input" rows="3" placeholder="Product description…" style="resize:none"></textarea></div>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-ghost flex-1" data-modal-close="add-product-modal">Cancel</button>
+      <button class="btn-primary flex-1" onclick="showToast('Product added!','success');closeModal('add-product-modal')">Add Product</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container" style="position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:200"></div>
+<script src="assets/js/main.js"></script>
+
+<!-- Large Modal -->
+<div class="modal-overlay" id="large-modal">
+  <div class="modal-box modal-lg">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Large Data Modal</h2>
+      <button class="btn-icon" data-modal-close="large-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="space-y-4 text-sm" style="color:var(--text-muted)">
+      <p>This modal spans a wider area, accommodating detailed tables or complex forms.</p>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-primary ml-auto" data-modal-close="large-modal">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box" style="max-width:400px;text-align:center">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(244,63,94,.15)">
+      <svg width="24" height="24" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h2 class="text-xl font-bold text-main mb-2">Are you sure?</h2>
+    <p class="text-sm mb-6" style="color:var(--text-muted)">Do you really want to delete this? This action cannot be undone.</p>
+    <div class="flex gap-3">
+      <button class="btn-ghost flex-1" data-modal-close="delete-modal">Cancel</button>
+      <button class="btn-danger flex-1" onclick="showToast('Item deleted successfully!', 'success');closeModal('delete-modal')">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 13 Pro - Zipley</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Alpine.js for Tabs and Gallery interaction -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header (Simplified) -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">Z</div>
+                <span class="text-2xl font-bold tracking-tight text-gray-900 hidden md:block">Zipley</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="text-gray-600 hover:text-brand-600 relative">
+                    <i class="ph ph-shopping-cart text-2xl"></i>
+                    <span class="absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-6" x-data="{ 
+        activeImage: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+        images: [
+            'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1603799056623-28f00db1eb24?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80'
+        ],
+        activeTab: 'description',
+        qty: 1
+    }">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex text-sm text-gray-500 mb-8">
+            <ol class="flex items-center space-x-2">
+                <li><a href="index.html" class="hover:text-brand-600">Home</a></li>
+                <li><i class="ph ph-caret-right text-xs"></i></li>
+                <li><a href="category.html" class="hover:text-brand-600">Electronics</a></li>
+                <li><i class="ph ph-caret-right text-xs"></i></li>
+                <li><a href="category.html" class="hover:text-brand-600">Phones</a></li>
+                <li><i class="ph ph-caret-right text-xs"></i></li>
+                <li class="text-gray-800 font-medium">iPhone 13 Pro</li>
+            </ol>
+        </nav>
+
+        <div class="bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-gray-100 mb-8">
+            <div class="flex flex-col lg:flex-row gap-10">
+                
+                <!-- Left: Image Gallery -->
+                <div class="w-full lg:w-5/12 flex flex-col gap-4">
+                    <!-- Main Image with Zoom placeholder -->
+                    <div class="w-full h-80 md:h-[450px] bg-gray-50 rounded-xl overflow-hidden border border-gray-100 flex items-center justify-center p-4 relative group cursor-crosshair">
+                        <img :src="activeImage" alt="Product Image" class="max-h-full object-contain">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <div class="bg-white/80 backdrop-blur rounded-full px-4 py-2 text-sm font-medium shadow-sm flex items-center gap-2">
+                                <i class="ph ph-magnifying-glass-plus"></i> Hover to zoom
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Thumbnails -->
+                    <div class="flex gap-4 overflow-x-auto pb-2 custom-scrollbar">
+                        <template x-for="(img, index) in images" :key="index">
+                            <button @click="activeImage = img" class="w-20 h-20 flex-shrink-0 bg-gray-50 rounded-lg border-2 overflow-hidden flex items-center justify-center p-2" :class="activeImage === img ? 'border-brand-500' : 'border-transparent hover:border-gray-200'">
+                                <img :src="img" alt="Thumbnail" class="max-h-full object-contain mix-blend-multiply">
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Right: Product Info -->
+                <div class="w-full lg:w-7/12 flex flex-col">
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between gap-4 mb-2">
+                            <span class="bg-brand-100 text-brand-700 text-xs font-bold px-2.5 py-1 rounded">Top Rated</span>
+                            <div class="flex items-center gap-3">
+                                <button class="text-gray-400 hover:text-red-500 transition"><i class="ph ph-heart text-2xl"></i></button>
+                                <button class="text-gray-400 hover:text-brand-600 transition"><i class="ph ph-share-network text-2xl"></i></button>
+                            </div>
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">Apple iPhone 13 Pro, 256GB, Sierra Blue - Unlocked (Renewed Premium)</h1>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-1">
+                                <i class="ph-fill ph-star text-yellow-400"></i>
+                                <i class="ph-fill ph-star text-yellow-400"></i>
+                                <i class="ph-fill ph-star text-yellow-400"></i>
+                                <i class="ph-fill ph-star text-yellow-400"></i>
+                                <i class="ph-fill ph-star-half text-yellow-400"></i>
+                            </div>
+                            <a href="#reviews" @click.prevent="activeTab = 'reviews'" class="text-sm text-brand-600 hover:underline">4.8 Rating (1,284 Reviews)</a>
+                            <span class="text-gray-300">|</span>
+                            <span class="text-sm text-green-600 font-medium flex items-center gap-1"><i class="ph-fill ph-check-circle"></i> In Stock</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 pb-6 border-b border-gray-100">
+                        <div class="flex items-end gap-3 mb-2">
+                            <span class="text-4xl font-bold text-gray-900">$899.00</span>
+                            <span class="text-xl text-gray-400 line-through mb-1">$1,099.00</span>
+                            <span class="text-red-500 font-bold mb-1">-18%</span>
+                        </div>
+                        <p class="text-sm text-gray-500">+ $15.00 shipping & import fees deposit to Bangladesh</p>
+                    </div>
+
+                    <!-- Variant Selector: Color -->
+                    <div class="mb-5">
+                        <h4 class="text-sm font-medium text-gray-900 mb-3">Color: <span class="font-bold">Sierra Blue</span></h4>
+                        <div class="flex items-center gap-3">
+                            <button class="w-10 h-10 rounded-full bg-[#7595a8] ring-2 ring-offset-2 ring-brand-500" title="Sierra Blue"></button>
+                            <button class="w-10 h-10 rounded-full bg-[#464644] ring-2 ring-offset-2 ring-transparent hover:ring-gray-300" title="Graphite"></button>
+                            <button class="w-10 h-10 rounded-full bg-[#fcead9] ring-2 ring-offset-2 ring-transparent hover:ring-gray-300" title="Gold"></button>
+                            <button class="w-10 h-10 rounded-full bg-[#f4f5f0] ring-2 ring-offset-2 ring-transparent hover:ring-gray-300" title="Silver"></button>
+                        </div>
+                    </div>
+
+                    <!-- Variant Selector: Storage -->
+                    <div class="mb-6 pb-6 border-b border-gray-100">
+                        <h4 class="text-sm font-medium text-gray-900 mb-3">Capacity: <span class="font-bold">256GB</span></h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="border border-gray-200 text-gray-700 hover:border-brand-500 rounded-lg px-4 py-2 text-sm font-medium transition">128GB</button>
+                            <button class="border-2 border-brand-500 text-brand-700 bg-brand-50 rounded-lg px-4 py-2 text-sm font-medium">256GB</button>
+                            <button class="border border-gray-200 text-gray-700 hover:border-brand-500 rounded-lg px-4 py-2 text-sm font-medium transition">512GB</button>
+                            <button class="border border-gray-200 text-gray-700 hover:border-brand-500 rounded-lg px-4 py-2 text-sm font-medium transition">1TB</button>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <!-- Quantity -->
+                        <div class="flex items-center border border-gray-300 rounded-lg h-12 w-32 bg-white">
+                            <button @click="if(qty > 1) qty--" class="w-10 h-full flex items-center justify-center text-gray-500 hover:text-brand-600 transition"><i class="ph ph-minus"></i></button>
+                            <input type="number" x-model="qty" class="w-full text-center font-semibold focus:outline-none appearance-none" readonly>
+                            <button @click="if(qty < 5) qty++" class="w-10 h-full flex items-center justify-center text-gray-500 hover:text-brand-600 transition"><i class="ph ph-plus"></i></button>
+                        </div>
+                        
+                        <button class="flex-1 bg-brand-50 hover:bg-brand-100 text-brand-700 border border-brand-200 font-bold h-12 rounded-lg flex items-center justify-center gap-2 transition">
+                            <i class="ph ph-shopping-cart-simple text-xl"></i> Add to Cart
+                        </button>
+                        <button class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold h-12 rounded-lg transition shadow-md hover:shadow-lg">
+                            Buy Now
+                        </button>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="grid grid-cols-2 gap-4 mt-auto border border-gray-100 bg-gray-50 rounded-xl p-4">
+                        <div class="flex items-center gap-3">
+                            <i class="ph ph-truck text-2xl text-gray-500"></i>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">Free Delivery</p>
+                                <a href="#" class="text-xs text-brand-600 underline">Enter your ZIP</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ph ph-arrow-u-up-left text-2xl text-gray-500"></i>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">Return Delivery</p>
+                                <p class="text-xs text-gray-500">Free 30 Days Delivery Returns</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 mb-12 overflow-hidden" id="details">
+            <div class="flex border-b border-gray-100 overflow-x-auto hide-scrollbar">
+                <button @click="activeTab = 'description'" :class="activeTab === 'description' ? 'border-brand-600 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="px-6 py-4 font-semibold text-sm border-b-2 whitespace-nowrap transition">Description</button>
+                <button @click="activeTab = 'specifications'" :class="activeTab === 'specifications' ? 'border-brand-600 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="px-6 py-4 font-semibold text-sm border-b-2 whitespace-nowrap transition">Specifications</button>
+                <button @click="activeTab = 'reviews'" id="reviews" :class="activeTab === 'reviews' ? 'border-brand-600 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="px-6 py-4 font-semibold text-sm border-b-2 whitespace-nowrap transition">Reviews (1,284)</button>
+                <button @click="activeTab = 'shipping'" :class="activeTab === 'shipping' ? 'border-brand-600 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="px-6 py-4 font-semibold text-sm border-b-2 whitespace-nowrap transition">Shipping & Returns</button>
+            </div>
+
+            <div class="p-6 md:p-8">
+                <!-- Description Tab -->
+                <div x-show="activeTab === 'description'" class="prose max-w-none text-gray-600 text-sm md:text-base leading-relaxed">
+                    <p class="mb-4">The iPhone 13 Pro introduces a dramatically more powerful camera system. A display so responsive, every interaction feels new again. The world's fastest smartphone chip. Exceptional durability. And a huge leap in battery life. Let's Pro.</p>
+                    <ul class="list-disc pl-5 mb-4 space-y-2">
+                        <li>6.1-inch Super Retina XDR display with ProMotion for a faster, more responsive feel</li>
+                        <li>Cinematic mode adds shallow depth of field and shifts focus automatically in your videos</li>
+                        <li>Pro camera system with new 12MP Telephoto, Wide, and Ultra Wide cameras; LiDAR Scanner; 6x optical zoom range; macro photography; Photographic Styles, ProRes video, Smart HDR 4, Night mode, Apple ProRAW, 4K Dolby Vision HDR recording</li>
+                        <li>12MP TrueDepth front camera with Night mode, 4K Dolby Vision HDR recording</li>
+                        <li>A15 Bionic chip for lightning-fast performance</li>
+                    </ul>
+                    <p>Designed with a surgical-grade stainless steel band and a Ceramic Shield front that's tougher than any smartphone glass. Industry-leading IP68 water resistance ensures your device is safe from accidental spills and splashes.</p>
+                </div>
+
+                <!-- Specifications Tab -->
+                <div x-show="activeTab === 'specifications'" style="display: none;" class="w-full max-w-3xl">
+                    <table class="w-full text-sm text-left border-collapse">
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <th class="py-3 px-4 bg-gray-50 font-medium text-gray-900 w-1/3">Brand</th>
+                                <td class="py-3 px-4 text-gray-600">Apple</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <th class="py-3 px-4 bg-gray-50 font-medium text-gray-900">Model Name</th>
+                                <td class="py-3 px-4 text-gray-600">iPhone 13 Pro</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <th class="py-3 px-4 bg-gray-50 font-medium text-gray-900">Operating System</th>
+                                <td class="py-3 px-4 text-gray-600">iOS 15</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <th class="py-3 px-4 bg-gray-50 font-medium text-gray-900">Cellular Technology</th>
+                                <td class="py-3 px-4 text-gray-600">5G</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <th class="py-3 px-4 bg-gray-50 font-medium text-gray-900">Memory Storage Capacity</th>
+                                <td class="py-3 px-4 text-gray-600">256 GB</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <th class="py-3 px-4 bg-gray-50 font-medium text-gray-900">Screen Size</th>
+                                <td class="py-3 px-4 text-gray-600">6.1 Inches</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div x-show="activeTab === 'reviews'" style="display: none;">
+                    <div class="flex flex-col md:flex-row gap-10">
+                        <!-- Rating Summary -->
+                        <div class="w-full md:w-1/3">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Customer Reviews</h3>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="text-5xl font-bold text-gray-900">4.8</div>
+                                <div>
+                                    <div class="flex text-yellow-400 text-xl mb-1">
+                                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-500">Based on 1,284 reviews</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Progress bars -->
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm">
+                                    <span class="w-8 text-gray-600 font-medium">5 <i class="ph-fill ph-star text-yellow-400 text-xs"></i></span>
+                                    <div class="flex-1 h-2 mx-3 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 rounded-full" style="width: 85%"></div></div>
+                                    <span class="w-10 text-right text-gray-500">85%</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <span class="w-8 text-gray-600 font-medium">4 <i class="ph-fill ph-star text-yellow-400 text-xs"></i></span>
+                                    <div class="flex-1 h-2 mx-3 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 rounded-full" style="width: 10%"></div></div>
+                                    <span class="w-10 text-right text-gray-500">10%</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <span class="w-8 text-gray-600 font-medium">3 <i class="ph-fill ph-star text-yellow-400 text-xs"></i></span>
+                                    <div class="flex-1 h-2 mx-3 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 rounded-full" style="width: 3%"></div></div>
+                                    <span class="w-10 text-right text-gray-500">3%</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <span class="w-8 text-gray-600 font-medium">2 <i class="ph-fill ph-star text-yellow-400 text-xs"></i></span>
+                                    <div class="flex-1 h-2 mx-3 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 rounded-full" style="width: 1%"></div></div>
+                                    <span class="w-10 text-right text-gray-500">1%</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <span class="w-8 text-gray-600 font-medium">1 <i class="ph-fill ph-star text-yellow-400 text-xs"></i></span>
+                                    <div class="flex-1 h-2 mx-3 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 rounded-full" style="width: 1%"></div></div>
+                                    <span class="w-10 text-right text-gray-500">1%</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full mt-6 border-2 border-brand-600 text-brand-600 hover:bg-brand-50 font-bold py-2 rounded-lg transition">Write a Review</button>
+                        </div>
+                        
+                        <!-- Review List -->
+                        <div class="w-full md:w-2/3 space-y-6">
+                            <!-- Review Item -->
+                            <div class="border-b border-gray-100 pb-6">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold">JD</div>
+                                        <div>
+                                            <p class="font-bold text-sm text-gray-900">John Doe <span class="text-green-500 text-xs ml-1"><i class="ph-fill ph-check-circle"></i> Verified Buyer</span></p>
+                                            <p class="text-xs text-gray-400">2 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                    </div>
+                                </div>
+                                <h4 class="font-bold text-gray-800 text-sm mb-2">Incredible phone, huge upgrade from iPhone 11</h4>
+                                <p class="text-sm text-gray-600">The 120Hz promotion display is a game changer. The battery life easily lasts me a full day of heavy use. The camera macro mode is also really fun to play with. Worth the upgrade.</p>
+                            </div>
+                            
+                            <!-- Review Item -->
+                            <div class="border-b border-gray-100 pb-6">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://ui-avatars.com/api/?name=Sarah+Smith&background=random" class="w-10 h-10 rounded-full" alt="User">
+                                        <div>
+                                            <p class="font-bold text-sm text-gray-900">Sarah Smith <span class="text-green-500 text-xs ml-1"><i class="ph-fill ph-check-circle"></i> Verified Buyer</span></p>
+                                            <p class="text-xs text-gray-400">1 week ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph ph-star text-gray-300"></i>
+                                    </div>
+                                </div>
+                                <h4 class="font-bold text-gray-800 text-sm mb-2">Great phone but heavy</h4>
+                                <p class="text-sm text-gray-600">Love the cameras and the battery life. However, it is noticeably heavier than my previous iPhone because of the stainless steel edges and larger battery. Still giving it 4 stars for performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Tab -->
+                <div x-show="activeTab === 'shipping'" style="display: none;" class="prose max-w-none text-gray-600 text-sm">
+                    <p><strong>Estimated Delivery:</strong> 3-5 Business Days</p>
+                    <p><strong>Shipping Methods:</strong> We offer Standard and Express shipping. Cost is calculated at checkout based on your location and the weight of your order.</p>
+                    <p><strong>Returns:</strong> You may return most new, unopened items within 30 days of delivery for a full refund. We'll also pay the return shipping costs if the return is a result of our error (you received an incorrect or defective item, etc.).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products (Horizontal Scroll) -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Products</h2>
+            <div class="flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory hide-scrollbar">
+                
+                <!-- Product Card (Using JS to generate multiple for demo) -->
+                <script>
+                    for(let i=0; i<5; i++) {
+                        document.write(`
+                        <div class="min-w-[240px] md:min-w-[260px] bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg transition relative group snap-start">
+                            <div class="relative mb-4 h-48 bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center p-4">
+                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=400&q=80" alt="Product" class="h-full object-contain mix-blend-multiply group-hover:scale-105 transition duration-300">
+                                <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                    <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-700 hover:text-brand-600 hover:shadow-md transition transform translate-y-4 group-hover:translate-y-0"><i class="ph ph-shopping-cart-simple text-xl"></i></button>
+                                </div>
+                            </div>
+                            <a href="#" class="block font-medium text-gray-800 hover:text-brand-600 transition truncate mb-1">Related Device ${i+1}</a>
+                            <div class="flex items-center gap-1 mb-2">
+                                <i class="ph-fill ph-star text-yellow-400 text-sm"></i>
+                                <span class="text-xs text-gray-500">4.${Math.floor(Math.random() * 9)} (${Math.floor(Math.random() * 200)})</span>
+                            </div>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-lg font-bold text-brand-600">$${Math.floor(Math.random() * 400) + 200}.00</span>
+                            </div>
+                        </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

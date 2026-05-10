@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Zipley</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }, colors: { brand: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', } } } } }
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .blog-card { transition: all 0.3s ease; }
+        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1); }
+        .blog-card img { transition: transform 0.5s ease; }
+        .blog-card:hover img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header (Simplified) -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100 py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-heading font-bold text-xl">Z</div>
+                <span class="text-2xl font-heading font-extrabold tracking-tight text-gray-900 hidden md:block">Zipley.</span>
+            </a>
+            <ul class="flex items-center gap-6 text-sm font-medium text-gray-600 font-heading">
+                <li><a href="index.html" class="hover:text-brand-600 transition">Home</a></li>
+                <li><a href="category.html" class="hover:text-brand-600 transition">Shop</a></li>
+                <li><a href="bloglist.html" class="text-brand-600 transition">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="bg-brand-900 py-16 md:py-24 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=2000&q=80" alt="Blog Hero" class="w-full h-full object-cover mix-blend-luminosity">
+        </div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <span class="text-brand-400 font-bold tracking-widest uppercase text-sm mb-4 block">Our Journal</span>
+            <h1 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-4">Latest News & Articles</h1>
+            <p class="text-brand-100 text-lg max-w-2xl mx-auto">Discover the latest trends, tech news, styling tips, and eCommerce insights from our experts.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 md:py-16 flex flex-col lg:flex-row gap-8">
+        
+        <!-- Blog Grid (Left Side) -->
+        <div class="w-full lg:w-2/3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Blog Post 1 -->
+                <article class="blog-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col">
+                    <div class="relative h-60 overflow-hidden">
+                        <span class="absolute top-4 left-4 z-10 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Tech & Gadgets</span>
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Blog" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-4 text-xs text-gray-500 mb-3 font-medium">
+                            <span class="flex items-center gap-1"><i class="ph ph-calendar-blank"></i> Oct 24, 2026</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-user"></i> Admin</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-chat-circle"></i> 12 Comments</span>
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-gray-900 mb-3 hover:text-brand-600 transition line-clamp-2">
+                            <a href="blog_details.html">The Ultimate Guide to Choosing the Right Laptop for Work and Play</a>
+                        </h2>
+                        <p class="text-gray-600 text-sm mb-5 line-clamp-3">With so many options on the market, finding the perfect laptop can be overwhelming. In this guide, we break down everything you need to know.</p>
+                        <a href="blog_details.html" class="mt-auto inline-flex items-center gap-2 text-brand-600 font-bold text-sm hover:text-brand-800 transition">Read Article <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col">
+                    <div class="relative h-60 overflow-hidden">
+                        <span class="absolute top-4 left-4 z-10 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Fashion</span>
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80" alt="Blog" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-4 text-xs text-gray-500 mb-3 font-medium">
+                            <span class="flex items-center gap-1"><i class="ph ph-calendar-blank"></i> Oct 20, 2026</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-user"></i> Sarah Lee</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-chat-circle"></i> 5 Comments</span>
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-gray-900 mb-3 hover:text-brand-600 transition line-clamp-2">
+                            <a href="blog_details.html">Top 10 Fall Fashion Trends You Need to Try This Season</a>
+                        </h2>
+                        <p class="text-gray-600 text-sm mb-5 line-clamp-3">Get ready for the cooler weather with our top picks for fall fashion. From oversized sweaters to classic trench coats, we've got you covered.</p>
+                        <a href="blog_details.html" class="mt-auto inline-flex items-center gap-2 text-brand-600 font-bold text-sm hover:text-brand-800 transition">Read Article <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col">
+                    <div class="relative h-60 overflow-hidden">
+                        <span class="absolute top-4 left-4 z-10 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Smart Home</span>
+                        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80" alt="Blog" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-4 text-xs text-gray-500 mb-3 font-medium">
+                            <span class="flex items-center gap-1"><i class="ph ph-calendar-blank"></i> Oct 15, 2026</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-user"></i> Admin</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-chat-circle"></i> 8 Comments</span>
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-gray-900 mb-3 hover:text-brand-600 transition line-clamp-2">
+                            <a href="blog_details.html">How to Build a Smart Home on a Budget in 2026</a>
+                        </h2>
+                        <p class="text-gray-600 text-sm mb-5 line-clamp-3">You don't need to spend a fortune to automate your house. Check out these budget-friendly smart home devices that actually work.</p>
+                        <a href="blog_details.html" class="mt-auto inline-flex items-center gap-2 text-brand-600 font-bold text-sm hover:text-brand-800 transition">Read Article <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col">
+                    <div class="relative h-60 overflow-hidden">
+                        <span class="absolute top-4 left-4 z-10 bg-rose-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Lifestyle</span>
+                        <img src="https://images.unsplash.com/photo-1505934333218-8fe21ff88b67?auto=format&fit=crop&w=800&q=80" alt="Blog" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-4 text-xs text-gray-500 mb-3 font-medium">
+                            <span class="flex items-center gap-1"><i class="ph ph-calendar-blank"></i> Oct 10, 2026</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-user"></i> Mike T.</span>
+                            <span class="flex items-center gap-1"><i class="ph ph-chat-circle"></i> 3 Comments</span>
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-gray-900 mb-3 hover:text-brand-600 transition line-clamp-2">
+                            <a href="blog_details.html">5 Easy Tips for a Minimalist Minimalist Workspace</a>
+                        </h2>
+                        <p class="text-gray-600 text-sm mb-5 line-clamp-3">A clean workspace leads to a clear mind. Learn how to declutter your desk and boost your productivity with these 5 simple tips.</p>
+                        <a href="blog_details.html" class="mt-auto inline-flex items-center gap-2 text-brand-600 font-bold text-sm hover:text-brand-800 transition">Read Article <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-center mt-12">
+                <nav class="flex items-center gap-2">
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-50 transition" disabled>
+                        <i class="ph-bold ph-caret-left"></i>
+                    </button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-600 text-white font-bold shadow-md">1</button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-brand-300 font-bold transition">2</button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-brand-300 font-bold transition">3</button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-brand-300 transition">
+                        <i class="ph-bold ph-caret-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Sidebar (Right Side) -->
+        <aside class="w-full lg:w-1/3 space-y-8">
+            
+            <!-- Search -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-100">Search Articles</h3>
+                <form class="relative">
+                    <input type="text" placeholder="Type here..." class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-4 pr-10 py-3 text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition-colors">
+                    <button type="submit" class="absolute right-3 top-3 text-gray-400 hover:text-brand-600"><i class="ph-bold ph-magnifying-glass text-lg"></i></button>
+                </form>
+            </div>
+
+            <!-- Categories -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-100">Categories</h3>
+                <ul class="space-y-3 text-sm text-gray-600 font-medium">
+                    <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Tech & Gadgets <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">24</span></a></li>
+                    <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Fashion & Trends <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">18</span></a></li>
+                    <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Smart Home <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">12</span></a></li>
+                    <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Lifestyle <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">09</span></a></li>
+                    <li><a href="#" class="flex justify-between hover:text-brand-600 transition">Buying Guides <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md text-xs">05</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Recent Posts -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-100">Recent Posts</h3>
+                <div class="space-y-5">
+                    <div class="flex gap-4 group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=150&q=80" alt="Recent" class="w-16 h-16 rounded-lg object-cover">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm line-clamp-2 group-hover:text-brand-600 transition leading-tight mb-1">The Ultimate Guide to Choosing the Right Laptop</h4>
+                            <p class="text-xs text-gray-500"><i class="ph ph-calendar-blank"></i> Oct 24, 2026</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=150&q=80" alt="Recent" class="w-16 h-16 rounded-lg object-cover">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm line-clamp-2 group-hover:text-brand-600 transition leading-tight mb-1">Top 10 Fall Fashion Trends You Need to Try</h4>
+                            <p class="text-xs text-gray-500"><i class="ph ph-calendar-blank"></i> Oct 20, 2026</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=150&q=80" alt="Recent" class="w-16 h-16 rounded-lg object-cover">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm line-clamp-2 group-hover:text-brand-600 transition leading-tight mb-1">How to Build a Smart Home on a Budget</h4>
+                            <p class="text-xs text-gray-500"><i class="ph ph-calendar-blank"></i> Oct 15, 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-100">Popular Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    <a href="#" class="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition">#Tech</a>
+                    <a href="#" class="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition">#Review</a>
+                    <a href="#" class="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition">#Laptops</a>
+                    <a href="#" class="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition">#Fashion</a>
+                    <a href="#" class="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition">#Style</a>
+                    <a href="#" class="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition">#SmartHome</a>
+                </div>
+            </div>
+
+        </aside>
+
+    </main>
+
+</body>
+</html>

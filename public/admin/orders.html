@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Orders — AdminKit</title>
+<meta name="description" content="Manage and track all orders — AdminKit admin dashboard."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/css/main.css"/>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+<nav id="sidebar">
+  <div style="display:flex;flex-direction:column;flex:1;overflow-y:auto;padding:0 8px">
+    <div class="flex items-center gap-3 px-2 py-5">
+      <div class="sidebar-logo-icon flex items-center justify-center w-9 h-9 rounded-xl shrink-0" style="background:linear-gradient(135deg,#6366f1,#4f46e5);box-shadow:0 4px 16px rgba(99,102,241,.4)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="sidebar-logo-text"><div class="font-bold text-main text-sm">AdminKit</div><div class="text-xs" style="color:var(--text-muted)">Enterprise v1.0</div></div>
+    </div>
+    <div class="nav-section-title">Main</div>
+    <a href="index.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="analytics.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span class="nav-label">Analytics</span></a>
+    <a href="orders.html" class="nav-item active"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="nav-label">Orders</span><span class="nav-badge">24</span></a>
+    <a href="products.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><span class="nav-label">Products</span></a>
+    <div class="nav-section-title">People</div>
+    <a href="users.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-label">Users</span><span class="nav-badge">1.2k</span></a>
+    <a href="profile.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">My Profile</span></a>
+    <div class="nav-section-title">System</div>
+    <a href="settings.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg><span class="nav-label">Settings</span></a>
+    <a href="login.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="nav-label">Logout</span></a>
+  </div>
+  <div style="padding:12px">
+    <a href="profile.html" class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color);text-decoration:none">
+      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" class="avatar avatar-sm shrink-0" style="background:var(--bg-card-hover)" alt="Admin">
+      <div class="sidebar-logo-text overflow-hidden"><div class="text-sm font-semibold text-main truncate">Alex Morgan</div><div class="text-xs truncate" style="color:var(--text-muted)">Super Admin</div></div>
+    </a>
+  </div>
+</nav>
+
+<header id="topbar">
+  <button id="sidebar-toggle" class="btn-icon mr-1"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  <div class="search-bar"><svg width="15" height="15" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="global-search" type="text" placeholder="Search orders…"/></div>
+  <div class="flex items-center gap-2 ml-auto">
+    <button id="theme-toggle" class="btn-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+    <div class="relative">
+      <button data-dropdown="user-dd-o" class="flex items-center gap-2 px-2 py-1 rounded-xl" style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.12)">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt="">
+        <svg width="12" height="12" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="dropdown" id="user-dd-o">
+        <a href="profile.html" class="dropdown-item">My Profile</a>
+        <a href="settings.html" class="dropdown-item">Settings</a>
+        <div class="dropdown-divider"></div>
+        <a href="login.html" class="dropdown-item" style="color:#fda4af">Logout</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" class="page-enter">
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-main">Orders</h1>
+      <div class="breadcrumb mt-1"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="current">Orders</span></div>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      <button class="btn-ghost flex items-center gap-2 text-sm"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Filter</button>
+      <button class="btn-ghost flex items-center gap-2 text-sm"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export</button>
+      <button class="btn-primary flex items-center gap-2 text-sm" data-modal-open="new-order-modal"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>New Order</button>
+    </div>
+  </div>
+
+  <!-- Status tabs -->
+  <div class="flex gap-1 mb-5 p-1 rounded-xl" style="background:rgba(30,41,59,.6);width:fit-content">
+    <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all" style="background:linear-gradient(135deg,#6366f1,#4f46e5);color:var(--text-main);box-shadow:0 2px 8px rgba(99,102,241,.3)">All Orders</button>
+    <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all" style="color:var(--text-muted)" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#64748b'">Pending</button>
+    <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all" style="color:var(--text-muted)" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#64748b'">Processing</button>
+    <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all" style="color:var(--text-muted)" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#64748b'">Delivered</button>
+    <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all" style="color:var(--text-muted)" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#64748b'">Cancelled</button>
+  </div>
+
+  <!-- Bulk action bar -->
+  <div id="bulk-action-bar" class="hidden mb-4 px-4 py-3 rounded-xl flex items-center gap-3" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2)">
+    <span class="text-sm" style="color:#a5b4fc"><span id="bulk-count">0</span> orders selected</span>
+    <button class="btn-secondary text-xs py-1.5 px-3">Mark Delivered</button>
+    <button class="btn-danger text-xs py-1.5 px-3" onclick="openModal('delete-modal')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button>
+    <button class="btn-ghost text-xs py-1.5 px-3">Export Selected</button>
+  </div>
+
+  <!-- Orders table -->
+  <div class="card p-0 overflow-hidden">
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:40px"><input type="checkbox" id="select-all" style="accent-color:#6366f1;width:15px;height:15px;cursor:pointer"/></th>
+            <th>Order ID</th><th>Customer</th><th>Date</th><th>Items</th><th>Amount</th><th>Payment</th><th>Status</th><th style="width:80px">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="orders-tbody">
+          <tr class="searchable-row">
+            <td><input type="checkbox" class="row-checkbox" style="accent-color:#6366f1;width:15px;height:15px;cursor:pointer"/></td>
+            <td class="font-mono text-xs font-semibold" style="color:#818cf8">#ORD-4521</td>
+            <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u1" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><div><div class="text-sm text-main">Sarah Connor</div><div class="text-xs" style="color:var(--text-muted)">sarah@email.com</div></div></div></td>
+            <td class="text-sm">Apr 7, 2026</td>
+            <td class="text-sm">3 items</td>
+            <td class="font-semibold text-main">$1,299</td>
+            <td><span class="tag chip-emerald">Paid</span></td>
+            <td><span class="tag chip-emerald">Delivered</span></td>
+            <td><div class="flex gap-1"><button class="btn-icon" style="width:28px;height:28px" onclick="showToast('Viewing order #4521','info')"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon" style="width:28px;height:28px" onclick="openModal('delete-modal')"><svg width="13" height="13" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div></td>
+          </tr>
+          <tr class="searchable-row">
+            <td><input type="checkbox" class="row-checkbox" style="accent-color:#6366f1;width:15px;height:15px;cursor:pointer"/></td>
+            <td class="font-mono text-xs font-semibold" style="color:#818cf8">#ORD-4520</td>
+            <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u2" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><div><div class="text-sm text-main">John Doe</div><div class="text-xs" style="color:var(--text-muted)">john@email.com</div></div></div></td>
+            <td class="text-sm">Apr 7, 2026</td>
+            <td class="text-sm">1 item</td>
+            <td class="font-semibold text-main">$2,499</td>
+            <td><span class="tag chip-emerald">Paid</span></td>
+            <td><span class="tag chip-indigo">Processing</span></td>
+            <td><div class="flex gap-1"><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div></td>
+          </tr>
+          <tr class="searchable-row">
+            <td><input type="checkbox" class="row-checkbox" style="accent-color:#6366f1;width:15px;height:15px;cursor:pointer"/></td>
+            <td class="font-mono text-xs font-semibold" style="color:#818cf8">#ORD-4519</td>
+            <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u3" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><div><div class="text-sm text-main">Emily Zhang</div><div class="text-xs" style="color:var(--text-muted)">emily@email.com</div></div></div></td>
+            <td class="text-sm">Apr 6, 2026</td>
+            <td class="text-sm">2 items</td>
+            <td class="font-semibold text-main">$249</td>
+            <td><span class="tag chip-amber">Pending</span></td>
+            <td><span class="tag chip-amber">Pending</span></td>
+            <td><div class="flex gap-1"><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div></td>
+          </tr>
+          <tr class="searchable-row">
+            <td><input type="checkbox" class="row-checkbox" style="accent-color:#6366f1;width:15px;height:15px;cursor:pointer"/></td>
+            <td class="font-mono text-xs font-semibold" style="color:#818cf8">#ORD-4518</td>
+            <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u4" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><div><div class="text-sm text-main">Mark Wilson</div><div class="text-xs" style="color:var(--text-muted)">mark@email.com</div></div></div></td>
+            <td class="text-sm">Apr 6, 2026</td>
+            <td class="text-sm">1 item</td>
+            <td class="font-semibold text-main">$749</td>
+            <td><span class="tag chip-rose">Refunded</span></td>
+            <td><span class="tag chip-rose">Cancelled</span></td>
+            <td><div class="flex gap-1"><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div></td>
+          </tr>
+          <tr class="searchable-row">
+            <td><input type="checkbox" class="row-checkbox" style="accent-color:#6366f1;width:15px;height:15px;cursor:pointer"/></td>
+            <td class="font-mono text-xs font-semibold" style="color:#818cf8">#ORD-4517</td>
+            <td><div class="flex items-center gap-2"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=u5" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><div><div class="text-sm text-main">Lisa Park</div><div class="text-xs" style="color:var(--text-muted)">lisa@email.com</div></div></div></td>
+            <td class="text-sm">Apr 5, 2026</td>
+            <td class="text-sm">4 items</td>
+            <td class="font-semibold text-main">$3,299</td>
+            <td><span class="tag chip-emerald">Paid</span></td>
+            <td><span class="tag chip-emerald">Delivered</span></td>
+            <td><div class="flex gap-1"><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn-icon" style="width:28px;height:28px"><svg width="13" height="13" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Pagination -->
+    <div class="flex items-center justify-between px-4 py-3" style="border-top:1px solid rgba(99,102,241,.07)">
+      <div class="text-sm" style="color:var(--text-muted)">Showing 1–5 of 248 orders</div>
+      <div class="flex gap-1">
+        <button class="btn-icon" style="width:32px;height:32px"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="btn-icon" style="width:32px;height:32px;background:rgba(99,102,241,.15);color:#818cf8;border-color:rgba(99,102,241,.3)">1</button>
+        <button class="btn-icon" style="width:32px;height:32px">2</button>
+        <button class="btn-icon" style="width:32px;height:32px">3</button>
+        <button class="btn-icon" style="width:32px;height:32px"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- New Order Modal -->
+<div class="modal-overlay" id="new-order-modal">
+  <div class="modal-box">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Create New Order</h2>
+      <button class="btn-icon" data-modal-close="new-order-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="space-y-4">
+      <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Customer Name</label><input class="form-input" type="text" placeholder="Enter customer name"/></div>
+      <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Email Address</label><input class="form-input" type="email" placeholder="customer@email.com"/></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Product</label><select class="form-select select2-init"><option>iPhone 15 Pro</option><option>MacBook Pro M3</option><option>AirPods Pro</option></select></div>
+        <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Quantity</label><input class="form-input" type="number" value="1" min="1"/></div>
+      </div>
+      <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Shipping Address</label><textarea class="form-input" rows="2" placeholder="Enter address…" style="resize:none"></textarea></div>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-ghost flex-1" data-modal-close="new-order-modal">Cancel</button>
+      <button class="btn-primary flex-1" onclick="showToast('Order created successfully!','success');closeModal('new-order-modal')">Create Order</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container" style="position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:200"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- Large Modal -->
+<div class="modal-overlay" id="large-modal">
+  <div class="modal-box modal-lg">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Large Data Modal</h2>
+      <button class="btn-icon" data-modal-close="large-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="space-y-4 text-sm" style="color:var(--text-muted)">
+      <p>This modal spans a wider area, accommodating detailed tables or complex forms.</p>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-primary ml-auto" data-modal-close="large-modal">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box" style="max-width:400px;text-align:center">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(244,63,94,.15)">
+      <svg width="24" height="24" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h2 class="text-xl font-bold text-main mb-2">Are you sure?</h2>
+    <p class="text-sm mb-6" style="color:var(--text-muted)">Do you really want to delete this? This action cannot be undone.</p>
+    <div class="flex gap-3">
+      <button class="btn-ghost flex-1" data-modal-close="delete-modal">Cancel</button>
+      <button class="btn-danger flex-1" onclick="showToast('Item deleted successfully!', 'success');closeModal('delete-modal')">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

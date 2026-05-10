@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Zipley</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', } } } } }
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100 py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">Z</div>
+                <span class="text-2xl font-bold tracking-tight text-gray-900 hidden md:block">Zipley</span>
+            </a>
+            <ul class="flex items-center gap-6 text-sm font-medium text-gray-600">
+                <li><a href="index.html" class="hover:text-brand-600 transition">Home</a></li>
+                <li><a href="contact.html" class="hover:text-brand-600 transition">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="flex-1 container mx-auto px-4 py-12 max-w-4xl" x-data="{ activeAccordion: 1 }">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
+            <p class="text-gray-600">Find answers to our most commonly asked questions below.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <div class="space-y-4">
+                
+                <!-- Accordion Item 1 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion === 1 ? activeAccordion = null : activeAccordion = 1" class="w-full flex items-center justify-between p-4 text-left font-bold text-gray-900 hover:bg-gray-50 transition" :class="activeAccordion === 1 ? 'bg-brand-50 text-brand-700' : ''">
+                        <span>How long does shipping take?</span>
+                        <i class="ph" :class="activeAccordion === 1 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+                    </button>
+                    <div x-show="activeAccordion === 1" x-collapse>
+                        <div class="p-4 border-t border-gray-100 text-gray-600 text-sm leading-relaxed bg-white">
+                            Standard shipping typically takes 3-5 business days. Express shipping takes 1-2 business days. International shipping can take 7-14 business days depending on the destination.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion === 2 ? activeAccordion = null : activeAccordion = 2" class="w-full flex items-center justify-between p-4 text-left font-bold text-gray-900 hover:bg-gray-50 transition" :class="activeAccordion === 2 ? 'bg-brand-50 text-brand-700' : ''">
+                        <span>What is your return policy?</span>
+                        <i class="ph" :class="activeAccordion === 2 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+                    </button>
+                    <div x-show="activeAccordion === 2" x-collapse style="display: none;">
+                        <div class="p-4 border-t border-gray-100 text-gray-600 text-sm leading-relaxed bg-white">
+                            We offer a 30-day return policy for most items. The item must be in its original condition and packaging. Please visit our <a href="return.html" class="text-brand-600 underline">Return Policy</a> page for full details and to initiate a return.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion === 3 ? activeAccordion = null : activeAccordion = 3" class="w-full flex items-center justify-between p-4 text-left font-bold text-gray-900 hover:bg-gray-50 transition" :class="activeAccordion === 3 ? 'bg-brand-50 text-brand-700' : ''">
+                        <span>How can I track my order?</span>
+                        <i class="ph" :class="activeAccordion === 3 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+                    </button>
+                    <div x-show="activeAccordion === 3" x-collapse style="display: none;">
+                        <div class="p-4 border-t border-gray-100 text-gray-600 text-sm leading-relaxed bg-white">
+                            Once your order ships, you will receive a tracking number via email. You can also visit our <a href="order-tracking.html" class="text-brand-600 underline">Order Tracking</a> page and enter your Order ID and email address to see real-time updates.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 4 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion === 4 ? activeAccordion = null : activeAccordion = 4" class="w-full flex items-center justify-between p-4 text-left font-bold text-gray-900 hover:bg-gray-50 transition" :class="activeAccordion === 4 ? 'bg-brand-50 text-brand-700' : ''">
+                        <span>Do you offer international shipping?</span>
+                        <i class="ph" :class="activeAccordion === 4 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+                    </button>
+                    <div x-show="activeAccordion === 4" x-collapse style="display: none;">
+                        <div class="p-4 border-t border-gray-100 text-gray-600 text-sm leading-relaxed bg-white">
+                            Yes, we ship to over 100 countries worldwide. Shipping costs and delivery times vary by country. You can see the exact shipping cost during checkout before placing your order.
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Accordion Item 5 -->
+                 <div class="border border-gray-200 rounded-lg overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion === 5 ? activeAccordion = null : activeAccordion = 5" class="w-full flex items-center justify-between p-4 text-left font-bold text-gray-900 hover:bg-gray-50 transition" :class="activeAccordion === 5 ? 'bg-brand-50 text-brand-700' : ''">
+                        <span>What payment methods do you accept?</span>
+                        <i class="ph" :class="activeAccordion === 5 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+                    </button>
+                    <div x-show="activeAccordion === 5" x-collapse style="display: none;">
+                        <div class="p-4 border-t border-gray-100 text-gray-600 text-sm leading-relaxed bg-white">
+                            We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and Cash on Delivery (in select locations). All payments are securely processed.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+                <p class="text-gray-600 mb-4">Still have questions?</p>
+                <a href="contact.html" class="inline-block bg-brand-600 hover:bg-brand-700 text-white font-medium py-2.5 px-6 rounded-lg transition shadow-sm">Contact Support</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

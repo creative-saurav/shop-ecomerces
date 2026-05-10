@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Zipley</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header (Simplified) -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">Z</div>
+                <span class="text-2xl font-bold tracking-tight text-gray-900 hidden md:block">Zipley</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <a href="account.html" class="text-gray-600 hover:text-brand-600"><i class="ph ph-user text-2xl"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8" x-data="{
+        items: [
+            { id: 1, name: 'Apple iPhone 13 Pro', variant: '256GB, Sierra Blue', price: 899.00, qty: 1, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80' },
+            { id: 2, name: 'Sony Wireless Headphones', variant: 'Black', price: 254.99, qty: 2, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80' }
+        ],
+        shipping: 15.00,
+        discount: 0,
+        couponCode: '',
+        get subtotal() { return this.items.reduce((sum, item) => sum + (item.price * item.qty), 0); },
+        get total() { return this.subtotal + this.shipping - this.discount; },
+        applyCoupon() {
+            if(this.couponCode === 'ZIPLEY10') { this.discount = this.subtotal * 0.10; }
+            else { alert('Invalid Coupon Code'); this.discount = 0; }
+        },
+        removeItem(index) { this.items.splice(index, 1); }
+    }">
+        <h1 class="text-2xl font-bold text-gray-900 mb-6">Shopping Cart <span class="text-gray-400 font-normal text-lg" x-text="`(${items.length} Items)`"></span></h1>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left: Cart Items -->
+            <div class="w-full lg:w-2/3">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    
+                    <template x-if="items.length > 0">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-gray-50 border-b border-gray-100 text-gray-500 text-sm">
+                                    <tr>
+                                        <th class="px-6 py-4 font-medium">Product</th>
+                                        <th class="px-6 py-4 font-medium">Price</th>
+                                        <th class="px-6 py-4 font-medium">Quantity</th>
+                                        <th class="px-6 py-4 font-medium">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100">
+                                    <template x-for="(item, index) in items" :key="item.id">
+                                        <tr class="group">
+                                            <td class="px-6 py-6">
+                                                <div class="flex items-center gap-4">
+                                                    <button @click="removeItem(index)" class="text-red-400 hover:text-red-600 transition"><i class="ph ph-trash text-xl"></i></button>
+                                                    <div class="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center p-2 flex-shrink-0">
+                                                        <img :src="item.image" alt="" class="max-h-full object-contain mix-blend-multiply">
+                                                    </div>
+                                                    <div>
+                                                        <a href="product.html" class="font-bold text-gray-800 hover:text-brand-600 transition line-clamp-2" x-text="item.name"></a>
+                                                        <p class="text-sm text-gray-500 mt-1" x-text="item.variant"></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-6 font-medium text-gray-900" x-text="'$' + item.price.toFixed(2)"></td>
+                                            <td class="px-6 py-6">
+                                                <div class="flex items-center border border-gray-300 rounded-lg h-10 w-28 bg-white">
+                                                    <button @click="if(item.qty > 1) item.qty--" class="w-8 h-full flex items-center justify-center text-gray-500 hover:text-brand-600"><i class="ph ph-minus"></i></button>
+                                                    <input type="number" x-model="item.qty" class="w-full text-center text-sm font-semibold focus:outline-none appearance-none" readonly>
+                                                    <button @click="item.qty++" class="w-8 h-full flex items-center justify-center text-gray-500 hover:text-brand-600"><i class="ph ph-plus"></i></button>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-6 font-bold text-brand-600" x-text="'$' + (item.price * item.qty).toFixed(2)"></td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+                    
+                    <template x-if="items.length === 0">
+                        <div class="p-12 text-center flex flex-col items-center">
+                            <i class="ph ph-shopping-cart text-6xl text-gray-300 mb-4"></i>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Your cart is empty</h3>
+                            <p class="text-gray-500 mb-6">Looks like you haven't added any items to your cart yet.</p>
+                            <a href="category.html" class="bg-brand-600 hover:bg-brand-700 text-white font-medium px-6 py-3 rounded-lg transition shadow-md">Continue Shopping</a>
+                        </div>
+                    </template>
+
+                </div>
+                
+                <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <a href="index.html" class="flex items-center gap-2 text-gray-600 hover:text-brand-600 font-medium transition">
+                        <i class="ph ph-arrow-left"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <div class="w-full lg:w-1/3">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-24">
+                    <h2 class="text-lg font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">Order Summary</h2>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span class="font-medium text-gray-900" x-text="'$' + subtotal.toFixed(2)"></span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Shipping</span>
+                            <span class="font-medium text-gray-900" x-text="shipping === 0 ? 'Free' : '$' + shipping.toFixed(2)"></span>
+                        </div>
+                        <template x-if="discount > 0">
+                            <div class="flex justify-between text-green-600">
+                                <span>Discount</span>
+                                <span class="font-medium" x-text="'-$' + discount.toFixed(2)"></span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Coupon Code -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Coupon Code</label>
+                        <div class="flex gap-2">
+                            <input type="text" x-model="couponCode" placeholder="Enter code (e.g. ZIPLEY10)" class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                            <button @click="applyCoupon()" class="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-100 pt-4 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-gray-900">Total</span>
+                            <span class="text-2xl font-bold text-brand-600" x-text="'$' + total.toFixed(2)"></span>
+                        </div>
+                        <p class="text-xs text-gray-500 text-right mt-1">Including VAT</p>
+                    </div>
+
+                    <a href="checkout.html" class="block w-full bg-brand-600 hover:bg-brand-700 text-white text-center font-bold py-3.5 rounded-lg transition shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" :class="items.length === 0 ? 'opacity-50 pointer-events-none' : ''">
+                        Proceed to Checkout
+                    </a>
+                    
+                    <div class="mt-4 flex items-center justify-center gap-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png" alt="Mastercard" class="h-5 object-contain grayscale opacity-60">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa" class="h-5 object-contain grayscale opacity-60">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png" alt="PayPal" class="h-5 object-contain grayscale opacity-60">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

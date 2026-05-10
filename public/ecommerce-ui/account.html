@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Zipley</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', } } } } }
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header (Simplified) -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100 py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">Z</div>
+                <span class="text-2xl font-bold tracking-tight text-gray-900 hidden md:block">Zipley</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="text-gray-600 hover:text-brand-600 relative">
+                    <i class="ph ph-shopping-cart text-2xl"></i>
+                    <span class="absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8" x-data="{ activeTab: 'dashboard' }">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex text-sm text-gray-500 mb-6">
+            <ol class="flex items-center space-x-2">
+                <li><a href="index.html" class="hover:text-brand-600">Home</a></li>
+                <li><i class="ph ph-caret-right text-xs"></i></li>
+                <li class="text-gray-800 font-medium">My Account</li>
+            </ol>
+        </nav>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="w-full md:w-64 flex-shrink-0">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center text-2xl font-bold mb-3">
+                        JD
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-lg">John Doe</h3>
+                    <p class="text-sm text-gray-500">john@example.com</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <ul class="flex flex-col py-2">
+                        <li>
+                            <button @click="activeTab = 'dashboard'" :class="activeTab === 'dashboard' ? 'bg-brand-50 text-brand-600 border-l-4 border-brand-600' : 'text-gray-600 hover:bg-gray-50 hover:text-brand-600 border-l-4 border-transparent'" class="w-full flex items-center gap-3 px-6 py-3 text-left font-medium transition">
+                                <i class="ph ph-squares-four text-xl"></i> Dashboard
+                            </button>
+                        </li>
+                        <li>
+                            <button @click="activeTab = 'orders'" :class="activeTab === 'orders' ? 'bg-brand-50 text-brand-600 border-l-4 border-brand-600' : 'text-gray-600 hover:bg-gray-50 hover:text-brand-600 border-l-4 border-transparent'" class="w-full flex items-center gap-3 px-6 py-3 text-left font-medium transition">
+                                <i class="ph ph-package text-xl"></i> My Orders
+                            </button>
+                        </li>
+                        <li>
+                            <button @click="activeTab = 'wishlist'" :class="activeTab === 'wishlist' ? 'bg-brand-50 text-brand-600 border-l-4 border-brand-600' : 'text-gray-600 hover:bg-gray-50 hover:text-brand-600 border-l-4 border-transparent'" class="w-full flex items-center gap-3 px-6 py-3 text-left font-medium transition">
+                                <i class="ph ph-heart text-xl"></i> Wishlist
+                            </button>
+                        </li>
+                        <li>
+                            <button @click="activeTab = 'addresses'" :class="activeTab === 'addresses' ? 'bg-brand-50 text-brand-600 border-l-4 border-brand-600' : 'text-gray-600 hover:bg-gray-50 hover:text-brand-600 border-l-4 border-transparent'" class="w-full flex items-center gap-3 px-6 py-3 text-left font-medium transition">
+                                <i class="ph ph-map-pin text-xl"></i> Addresses
+                            </button>
+                        </li>
+                        <li>
+                            <button @click="activeTab = 'profile'" :class="activeTab === 'profile' ? 'bg-brand-50 text-brand-600 border-l-4 border-brand-600' : 'text-gray-600 hover:bg-gray-50 hover:text-brand-600 border-l-4 border-transparent'" class="w-full flex items-center gap-3 px-6 py-3 text-left font-medium transition">
+                                <i class="ph ph-user-circle text-xl"></i> Profile Settings
+                            </button>
+                        </li>
+                        <li>
+                            <button @click="activeTab = 'reviews'" :class="activeTab === 'reviews' ? 'bg-brand-50 text-brand-600 border-l-4 border-brand-600' : 'text-gray-600 hover:bg-gray-50 hover:text-brand-600 border-l-4 border-transparent'" class="w-full flex items-center gap-3 px-6 py-3 text-left font-medium transition">
+                                <i class="ph ph-star text-xl"></i> Review History
+                            </button>
+                        </li>
+                        <li class="border-t border-gray-100 mt-2 pt-2">
+                            <a href="login.html" class="w-full flex items-center gap-3 px-6 py-3 text-left font-medium text-red-500 hover:bg-red-50 transition">
+                                <i class="ph ph-sign-out text-xl"></i> Log Out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="flex-1">
+                
+                <!-- Dashboard Tab -->
+                <div x-show="activeTab === 'dashboard'">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Dashboard</h2>
+                    <p class="text-gray-600 mb-8">Hello <span class="font-bold text-gray-900">John</span>, welcome back! From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center"><i class="ph ph-package text-2xl"></i></div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-gray-900">12</h4>
+                                <p class="text-sm text-gray-500">Total Orders</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center"><i class="ph ph-heart text-2xl"></i></div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-gray-900">5</h4>
+                                <p class="text-sm text-gray-500">Wishlist Items</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-green-50 text-green-500 flex items-center justify-center"><i class="ph ph-star text-2xl"></i></div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-gray-900">8</h4>
+                                <p class="text-sm text-gray-500">Reviews Submitted</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Recent Orders</h3>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-gray-50 border-b border-gray-100 text-gray-500">
+                                <tr>
+                                    <th class="px-6 py-3 font-medium">Order ID</th>
+                                    <th class="px-6 py-3 font-medium">Date</th>
+                                    <th class="px-6 py-3 font-medium">Total</th>
+                                    <th class="px-6 py-3 font-medium">Status</th>
+                                    <th class="px-6 py-3 font-medium">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-brand-600">#ZP-9843210</td>
+                                    <td class="px-6 py-4 text-gray-600">Oct 24, 2026</td>
+                                    <td class="px-6 py-4 font-bold text-gray-900">$1,536.70</td>
+                                    <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium">Processing</span></td>
+                                    <td class="px-6 py-4"><button @click="activeTab = 'orders'" class="text-brand-600 hover:underline">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-brand-600">#ZP-7654321</td>
+                                    <td class="px-6 py-4 text-gray-600">Sep 15, 2026</td>
+                                    <td class="px-6 py-4 font-bold text-gray-900">$89.99</td>
+                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-medium">Delivered</span></td>
+                                    <td class="px-6 py-4"><button @click="activeTab = 'orders'" class="text-brand-600 hover:underline">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- My Orders Tab -->
+                <div x-show="activeTab === 'orders'" style="display: none;">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">My Orders</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Order Item -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                            <div class="bg-gray-50 border-b border-gray-100 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div class="flex gap-6 text-sm">
+                                    <div><p class="text-gray-500">Order Placed</p><p class="font-bold text-gray-900">Oct 24, 2026</p></div>
+                                    <div><p class="text-gray-500">Total</p><p class="font-bold text-gray-900">$1,536.70</p></div>
+                                    <div><p class="text-gray-500">Ship To</p><p class="font-bold text-brand-600 hover:underline cursor-pointer">John Doe</p></div>
+                                </div>
+                                <div class="text-sm text-right">
+                                    <p class="text-gray-500">Order # <span class="font-bold text-gray-900">ZP-9843210</span></p>
+                                    <a href="#" class="text-brand-600 hover:underline font-medium">View Invoice</a>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full text-xs font-bold">Processing</span>
+                                    <span class="text-sm text-gray-500">Estimated Delivery: Oct 27 - Oct 29</span>
+                                </div>
+                                
+                                <div class="flex items-start gap-4 mb-4">
+                                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=100&q=80" alt="Product" class="w-20 h-20 object-contain bg-gray-50 rounded border border-gray-100 p-2 mix-blend-multiply">
+                                    <div class="flex-1">
+                                        <a href="product.html" class="font-bold text-gray-800 hover:text-brand-600 transition">Apple iPhone 13 Pro</a>
+                                        <p class="text-sm text-gray-500">256GB, Sierra Blue</p>
+                                        <p class="text-sm text-gray-500">Qty: 1</p>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <button class="bg-brand-50 hover:bg-brand-100 text-brand-700 text-sm font-medium px-4 py-2 rounded transition border border-brand-200">Track Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Item -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                            <div class="bg-gray-50 border-b border-gray-100 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div class="flex gap-6 text-sm">
+                                    <div><p class="text-gray-500">Order Placed</p><p class="font-bold text-gray-900">Sep 15, 2026</p></div>
+                                    <div><p class="text-gray-500">Total</p><p class="font-bold text-gray-900">$89.99</p></div>
+                                    <div><p class="text-gray-500">Ship To</p><p class="font-bold text-brand-600 hover:underline cursor-pointer">John Doe</p></div>
+                                </div>
+                                <div class="text-sm text-right">
+                                    <p class="text-gray-500">Order # <span class="font-bold text-gray-900">ZP-7654321</span></p>
+                                    <a href="#" class="text-brand-600 hover:underline font-medium">View Invoice</a>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="bg-green-100 text-green-700 px-2.5 py-1 rounded-full text-xs font-bold">Delivered</span>
+                                    <span class="text-sm text-gray-500">Delivered on Sep 18, 2026</span>
+                                </div>
+                                
+                                <div class="flex items-start gap-4 mb-4">
+                                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=100&q=80" alt="Product" class="w-20 h-20 object-contain bg-gray-50 rounded border border-gray-100 p-2 mix-blend-multiply">
+                                    <div class="flex-1">
+                                        <a href="product.html" class="font-bold text-gray-800 hover:text-brand-600 transition">Wireless Earbuds Pro</a>
+                                        <p class="text-sm text-gray-500">White</p>
+                                        <p class="text-sm text-gray-500">Qty: 1</p>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <button class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-medium px-4 py-2 rounded transition">Write Review</button>
+                                        <button class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium px-4 py-2 rounded transition shadow-sm">Buy Again</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wishlist Tab -->
+                <div x-show="activeTab === 'wishlist'" style="display: none;">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Wishlist</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Product Card -->
+                        <div class="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg transition relative group flex flex-col">
+                            <button class="absolute top-3 right-3 text-gray-400 hover:text-red-500 transition z-10 bg-white rounded-full p-1 shadow-sm"><i class="ph-fill ph-heart text-lg text-red-500"></i></button>
+                            <div class="relative mb-4 h-40 bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center p-4">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" alt="Product" class="h-full object-contain mix-blend-multiply group-hover:scale-105 transition duration-300">
+                            </div>
+                            <div class="flex-1 flex flex-col">
+                                <a href="product.html" class="block font-medium text-gray-800 hover:text-brand-600 transition line-clamp-2 mb-1">Nike Air Max Sneakers</a>
+                                <div class="flex items-baseline gap-2 mb-3 mt-auto">
+                                    <span class="text-lg font-bold text-brand-600">$120.00</span>
+                                </div>
+                                <button class="w-full bg-brand-50 hover:bg-brand-600 text-brand-700 hover:text-white font-medium py-2 rounded-lg transition flex items-center justify-center gap-2 text-sm border border-brand-200 hover:border-brand-600">
+                                    <i class="ph ph-shopping-cart-simple text-lg"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div x-show="activeTab === 'profile'" style="display: none;">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Profile Settings</h2>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
+                        <form class="space-y-6 max-w-2xl">
+                            <div class="flex items-center gap-6 mb-8">
+                                <div class="w-24 h-24 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center text-3xl font-bold relative group cursor-pointer overflow-hidden">
+                                    JD
+                                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-white">
+                                        <i class="ph ph-camera text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition mb-2 block">Change Avatar</button>
+                                    <p class="text-xs text-gray-500">JPG, GIF or PNG. Max size of 800K</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                    <input type="text" value="John" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                    <input type="text" value="Doe" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                    <input type="email" value="john@example.com" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" readonly>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" value="+1 (555) 000-0000" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-gray-900 border-t border-gray-100 pt-6 mt-6 mb-4">Change Password</h3>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                                <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                                    <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                                    <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                                </div>
+                            </div>
+
+                            <div class="pt-4">
+                                <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-6 rounded-lg transition shadow-md">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Addresses and Reviews can be similar simple lists -->
+                <div x-show="activeTab === 'addresses'" style="display: none;">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900">Addresses</h2>
+                        <button class="bg-brand-600 hover:bg-brand-700 text-white font-medium px-4 py-2 rounded-lg transition shadow-sm text-sm">Add New Address</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white border-2 border-brand-500 rounded-xl p-6 relative">
+                            <span class="absolute top-4 right-4 bg-brand-100 text-brand-700 text-xs font-bold px-2 py-1 rounded">Default</span>
+                            <h4 class="font-bold text-gray-900 mb-2">John Doe</h4>
+                            <p class="text-sm text-gray-600 mb-1">123 Main St, Apt 4B</p>
+                            <p class="text-sm text-gray-600 mb-1">New York, NY 10001</p>
+                            <p class="text-sm text-gray-600 mb-4">United States</p>
+                            <p class="text-sm text-gray-600 mb-4">+1 (555) 000-0000</p>
+                            <div class="flex gap-3">
+                                <button class="text-brand-600 hover:underline text-sm font-medium">Edit</button>
+                                <button class="text-red-500 hover:underline text-sm font-medium">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'reviews'" style="display: none;">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Review History</h2>
+                    <p class="text-gray-500">You haven't written any reviews yet.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

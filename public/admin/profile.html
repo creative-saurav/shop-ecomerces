@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>My Profile — AdminKit</title>
+<meta name="description" content="User profile management — AdminKit admin dashboard."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/css/main.css"/>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+<nav id="sidebar">
+  <div style="display:flex;flex-direction:column;flex:1;overflow-y:auto;padding:0 8px">
+    <div class="flex items-center gap-3 px-2 py-5"><div class="sidebar-logo-icon flex items-center justify-center w-9 h-9 rounded-xl shrink-0" style="background:linear-gradient(135deg,#6366f1,#4f46e5);box-shadow:0 4px 16px rgba(99,102,241,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="sidebar-logo-text"><div class="font-bold text-main text-sm">AdminKit</div><div class="text-xs" style="color:var(--text-muted)">Enterprise v1.0</div></div></div>
+    <div class="nav-section-title">Main</div>
+    <a href="index.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="analytics.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span class="nav-label">Analytics</span></a>
+    <a href="orders.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="nav-label">Orders</span><span class="nav-badge">24</span></a>
+    <a href="products.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><span class="nav-label">Products</span></a>
+    <div class="nav-section-title">People</div>
+    <a href="users.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-label">Users</span><span class="nav-badge">1.2k</span></a>
+    <a href="profile.html" class="nav-item active"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">My Profile</span></a>
+    <div class="nav-section-title">System</div>
+    <a href="settings.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg><span class="nav-label">Settings</span></a>
+    <a href="login.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="nav-label">Logout</span></a>
+  </div>
+  <div style="padding:12px"><a href="profile.html" class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(99,102,241,.06);border:1px solid var(--border-color);text-decoration:none"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" class="avatar avatar-sm shrink-0" style="background:var(--bg-card-hover)" alt="Admin"><div class="sidebar-logo-text overflow-hidden"><div class="text-sm font-semibold text-main truncate">Alex Morgan</div><div class="text-xs truncate" style="color:var(--text-muted)">Super Admin</div></div></a></div>
+</nav>
+
+<header id="topbar">
+  <button id="sidebar-toggle" class="btn-icon mr-1"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  <div class="search-bar"><svg width="15" height="15" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search…"/></div>
+  <div class="flex items-center gap-2 ml-auto">
+    <button id="theme-toggle" class="btn-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+    <div class="relative"><button data-dropdown="user-dd-pr" class="flex items-center gap-2 px-2 py-1 rounded-xl" style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.12)"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" style="width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover)" alt=""><svg width="12" height="12" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><div class="dropdown" id="user-dd-pr"><a href="profile.html" class="dropdown-item">My Profile</a><a href="settings.html" class="dropdown-item">Settings</a><div class="dropdown-divider"></div><a href="login.html" class="dropdown-item" style="color:#fda4af">Logout</a></div></div>
+  </div>
+</header>
+
+<main id="main-content" class="page-enter">
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold text-main">My Profile</h1>
+    <div class="breadcrumb mt-1"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="current">Profile</span></div>
+  </div>
+
+  <!-- Profile Hero Banner -->
+  <div class="card p-0 overflow-hidden mb-5">
+    <div style="height:140px;background:linear-gradient(135deg,#4f46e5,#7c3aed,#db2777);position:relative">
+      <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.03)%22/></svg>') repeat"></div>
+    </div>
+    <div class="px-6 pb-6">
+      <div class="flex flex-wrap items-end justify-between gap-4" style="margin-top:-36px">
+        <div class="flex items-end gap-4">
+          <div class="relative">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin99" style="width:80px;height:80px;border-radius:50%;background:var(--bg-card-hover);border:4px solid #0f172a" alt="Alex Morgan">
+            <button class="absolute bottom-0 right-0 w-7 h-7 rounded-full flex items-center justify-center" style="background:#6366f1;border:2px solid #0f172a" onclick="showToast('Upload avatar feature','info')"><svg width="12" height="12" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></button>
+          </div>
+          <div class="pb-1">
+            <div class="text-xl font-bold text-main">Alex Morgan</div>
+            <div class="text-sm" style="color:var(--text-muted)">Super Administrator • San Francisco, CA</div>
+            <div class="flex items-center gap-1.5 mt-1"><span class="status-dot status-online"></span><span class="text-xs" style="color:var(--text-muted-light)">Online</span></div>
+          </div>
+        </div>
+        <div class="flex gap-2 pb-1">
+          <button class="btn-ghost text-sm">Send Message</button>
+          <button class="btn-primary text-sm" onclick="showToast('Profile saved!','success')">Edit Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <!-- Left column -->
+    <div class="space-y-4">
+      <!-- Stats -->
+      <div class="card">
+        <div class="text-sm font-semibold text-main mb-4">Activity Stats</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl text-center" style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.12)"><div class="text-2xl font-bold" style="color:#818cf8" data-count="248"></div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Orders</div></div>
+          <div class="p-3 rounded-xl text-center" style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.12)"><div class="text-2xl font-bold" style="color:#10b981" data-count="38"></div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Reviews</div></div>
+          <div class="p-3 rounded-xl text-center" style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.12)"><div class="text-2xl font-bold" style="color:#f59e0b" data-count="5"></div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Projects</div></div>
+          <div class="p-3 rounded-xl text-center" style="background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.12)"><div class="text-2xl font-bold" style="color:#06b6d4" data-count="98"></div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Reports</div></div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="card">
+        <div class="text-sm font-semibold text-main mb-4">Skills & Expertise</div>
+        <div class="space-y-3">
+          <div><div class="flex justify-between text-xs mb-1.5"><span style="color:var(--text-muted-light)">Product Management</span><span class="text-main font-medium">92%</span></div><div class="progress-bar"><div class="progress-fill" style="background:linear-gradient(90deg,#6366f1,#8b5cf6);width:0" data-width="92%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span style="color:var(--text-muted-light)">Data Analysis</span><span class="text-main font-medium">85%</span></div><div class="progress-bar"><div class="progress-fill" style="background:linear-gradient(90deg,#10b981,#06b6d4);width:0" data-width="85%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span style="color:var(--text-muted-light)">Team Leadership</span><span class="text-main font-medium">78%</span></div><div class="progress-bar"><div class="progress-fill" style="background:linear-gradient(90deg,#f59e0b,#f97316);width:0" data-width="78%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span style="color:var(--text-muted-light)">UX Strategy</span><span class="text-main font-medium">65%</span></div><div class="progress-bar"><div class="progress-fill" style="background:linear-gradient(90deg,#f43f5e,#e879f9);width:0" data-width="65%"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="card">
+        <div class="text-sm font-semibold text-main mb-4">Contact Info</div>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-center gap-3"><svg width="15" height="15" fill="none" stroke="#6366f1" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span style="color:var(--text-muted-light)">alex@adminkit.com</span></div>
+          <div class="flex items-center gap-3"><svg width="15" height="15" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.25a16 16 0 006.29 6.29l1.61-1.61a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.5z"/></svg><span style="color:var(--text-muted-light)">+1 (555) 001-2345</span></div>
+          <div class="flex items-center gap-3"><svg width="15" height="15" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 10-16 0c0 3 2.7 6.9 8 11.7z"/></svg><span style="color:var(--text-muted-light)">San Francisco, CA, USA</span></div>
+          <div class="flex items-center gap-3"><svg width="15" height="15" fill="none" stroke="#818cf8" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg><span style="color:var(--text-muted-light)">adminkit.example.com</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right columns -->
+    <div class="lg:col-span-2 space-y-4">
+      <!-- Edit Form -->
+      <div class="card">
+        <div class="text-base font-semibold text-main mb-5">Personal Information</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">First Name</label><input class="form-input" type="text" value="Alex"/></div>
+          <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Last Name</label><input class="form-input" type="text" value="Morgan"/></div>
+          <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Email Address</label><input class="form-input" type="email" value="alex@adminkit.com"/></div>
+          <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Phone</label><input class="form-input" type="tel" value="+1 (555) 001-2345"/></div>
+          <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">City</label><input class="form-input" type="text" value="San Francisco"/></div>
+          <div><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Country</label><select class="form-select select2-init"><option>United States</option><option>Bangladesh</option><option>United Kingdom</option></select></div>
+          <div class="sm:col-span-2"><label class="text-xs font-medium mb-1.5 block" style="color:var(--text-muted-light)">Bio</label><textarea class="form-input" rows="3" style="resize:none">Super Administrator at AdminKit. Passionate about building great products and leading high-performance teams across global markets.</textarea></div>
+        </div>
+        <div class="flex justify-end mt-4">
+          <button class="btn-primary" onclick="showToast('Profile updated successfully!','success')">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="card">
+        <div class="text-base font-semibold text-main mb-4">Recent Activity</div>
+        <div class="space-y-0">
+          <div class="flex gap-4 pb-4" style="border-left:2px solid rgba(99,102,241,.2);padding-left:16px;margin-left:8px">
+            <div class="relative"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(99,102,241,.15);position:absolute;left:-28px"><svg width="14" height="14" fill="none" stroke="#818cf8" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div></div>
+            <div><div class="text-sm font-medium text-main">Approved order #4521</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">2 minutes ago</div></div>
+          </div>
+          <div class="flex gap-4 pb-4" style="border-left:2px solid rgba(99,102,241,.2);padding-left:16px;margin-left:8px">
+            <div class="relative"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(16,185,129,.15);position:absolute;left:-28px"><svg width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div></div>
+            <div><div class="text-sm font-medium text-main">Updated product — iPhone 15 Pro</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">1 hour ago</div></div>
+          </div>
+          <div class="flex gap-4 pb-4" style="border-left:2px solid rgba(99,102,241,.2);padding-left:16px;margin-left:8px">
+            <div class="relative"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(245,158,11,.15);position:absolute;left:-28px"><svg width="14" height="14" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div></div>
+            <div><div class="text-sm font-medium text-main">Added new user — Sarah Johnson</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">3 hours ago</div></div>
+          </div>
+          <div class="flex gap-4" style="border-left:2px solid rgba(99,102,241,.2);padding-left:16px;margin-left:8px">
+            <div class="relative"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(244,63,94,.15);position:absolute;left:-28px"><svg width="14" height="14" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div></div>
+            <div><div class="text-sm font-medium text-main">Cancelled order #4490 (payment failed)</div><div class="text-xs mt-0.5" style="color:var(--text-muted)">Yesterday</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="toast-container" style="position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:200"></div>
+<script src="assets/js/main.js"></script>
+
+<!-- Large Modal -->
+<div class="modal-overlay" id="large-modal">
+  <div class="modal-box modal-lg">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-bold text-main">Large Data Modal</h2>
+      <button class="btn-icon" data-modal-close="large-modal"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="space-y-4 text-sm" style="color:var(--text-muted)">
+      <p>This modal spans a wider area, accommodating detailed tables or complex forms.</p>
+    </div>
+    <div class="flex gap-3 mt-6">
+      <button class="btn-primary ml-auto" data-modal-close="large-modal">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box" style="max-width:400px;text-align:center">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(244,63,94,.15)">
+      <svg width="24" height="24" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h2 class="text-xl font-bold text-main mb-2">Are you sure?</h2>
+    <p class="text-sm mb-6" style="color:var(--text-muted)">Do you really want to delete this? This action cannot be undone.</p>
+    <div class="flex gap-3">
+      <button class="btn-ghost flex-1" data-modal-close="delete-modal">Cancel</button>
+      <button class="btn-danger flex-1" onclick="showToast('Item deleted successfully!', 'success');closeModal('delete-modal')">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

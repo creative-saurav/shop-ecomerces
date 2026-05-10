@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zipley - Multipurpose eCommerce HTML Template</title>
+    <!-- Google Fonts: Outfit & Inter for premium typographic contrast -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488', // Main Brand Teal
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        accent: {
+                            500: '#f59e0b', // Vibrant Orange/Amber for badges/stars
+                            600: '#d97706',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(13, 148, 136, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities for CodeCanyon Premium feel */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #0d9488, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+        }
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+        }
+        .product-card .action-buttons {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+        }
+        .product-card:hover .action-buttons {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom Swiper Pagination */
+        .swiper-pagination-bullet-active {
+            background-color: #0d9488 !important;
+            width: 24px !important;
+            border-radius: 4px !important;
+        }
+        .swiper-pagination-bullet {
+            transition: all 0.3s ease;
+        }
+        /* Hover image swap */
+        .img-swap-container img:nth-child(2) {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease;
+        }
+        .product-card:hover .img-swap-container img:nth-child(2) {
+            opacity: 1;
+        }
+    </style>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-[#f8fafc] text-gray-700 font-sans antialiased overflow-x-hidden">
+    
+    <!-- Top Bar -->
+    <div class="bg-brand-900 text-brand-50 text-xs py-2 hidden sm:block">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center gap-2"><i class="ph ph-phone"></i> +1 (800) 123-4567</span>
+                <span class="flex items-center gap-2"><i class="ph ph-envelope"></i> support@zipley.com</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="#" class="hover:text-white transition flex items-center gap-1"><i class="ph ph-storefront"></i> Become a Seller</a>
+                <a href="order-tracking.html" class="hover:text-white transition flex items-center gap-1"><i class="ph ph-map-pin"></i> Track Order</a>
+                <div class="flex items-center gap-1 cursor-pointer hover:text-white transition group relative">
+                    <i class="ph ph-globe"></i> English <i class="ph ph-caret-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100" x-data="{ mobileMenu: false, searchOpen: false }">
+        <div class="container mx-auto px-4 py-4 md:py-5 flex items-center justify-between gap-4 lg:gap-8">
+            
+            <!-- Mobile Menu Toggle -->
+            <button @click="mobileMenu = true" class="md:hidden text-gray-900 text-2xl">
+                <i class="ph ph-list"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group">
+                <div class="w-12 h-12 bg-gradient-to-br from-brand-500 to-brand-700 rounded-xl flex items-center justify-center text-white font-heading font-bold text-2xl shadow-glow group-hover:scale-105 transition-transform duration-300">Z</div>
+                <span class="text-3xl font-heading font-extrabold tracking-tight text-gray-900 hidden sm:block">Zipley<span class="text-brand-500">.</span></span>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="flex-1 max-w-3xl hidden md:flex items-center">
+                <div class="w-full relative group">
+                    <form action="search.html" class="flex w-full">
+                        <select class="hidden lg:block bg-gray-50 border border-r-0 border-gray-200 text-gray-600 rounded-l-full px-4 py-3 outline-none text-sm font-medium focus:bg-white transition-colors cursor-pointer border-r border-gray-200">
+                            <option>All Categories</option>
+                            <option>Electronics</option>
+                            <option>Fashion</option>
+                        </select>
+                        <input type="text" class="w-full bg-gray-50 border border-gray-200 text-gray-800 lg:rounded-none rounded-l-full px-6 py-3 outline-none focus:bg-white focus:border-brand-500 transition-colors" placeholder="I'm shopping for...">
+                        <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3 rounded-r-full font-medium transition-colors flex items-center gap-2">
+                            <i class="ph ph-magnifying-glass text-lg"></i> <span class="hidden lg:inline">Search</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-5 sm:space-x-7">
+                <button @click="searchOpen = !searchOpen" class="md:hidden text-gray-700 hover:text-brand-600 transition">
+                    <i class="ph ph-magnifying-glass text-2xl"></i>
+                </button>
+                
+                <a href="#" class="relative text-gray-700 hover:text-brand-600 transition hidden sm:block hover:-translate-y-1 transform duration-300">
+                    <i class="ph ph-heart text-2xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-accent-500 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                </a>
+
+                <a href="account.html" class="text-gray-700 hover:text-brand-600 transition hover:-translate-y-1 transform duration-300">
+                    <i class="ph ph-user text-2xl"></i>
+                </a>
+                
+                <a href="cart.html" class="flex items-center gap-3 group">
+                    <div class="relative text-gray-700 group-hover:text-brand-600 transition group-hover:-translate-y-1 transform duration-300">
+                        <i class="ph ph-shopping-bag text-[28px]"></i>
+                        <span class="absolute -top-1.5 -right-2 bg-brand-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md border-2 border-white">3</span>
+                    </div>
+                    <div class="hidden lg:block text-left">
+                        <p class="text-[10px] text-gray-500 font-medium uppercase tracking-wider leading-none">Total</p>
+                        <p class="font-bold text-gray-900 leading-none mt-1 group-hover:text-brand-600 transition">$124.00</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Search Dropdown -->
+        <div x-show="searchOpen" x-collapse class="md:hidden border-t border-gray-100 bg-white px-4 py-4 shadow-inner">
+            <form action="search.html" class="flex w-full">
+                <input type="text" class="w-full bg-gray-100 border border-transparent rounded-l-lg px-4 py-3 outline-none focus:bg-white focus:border-brand-500" placeholder="Search products...">
+                <button type="submit" class="bg-brand-600 text-white px-6 py-3 rounded-r-lg font-medium"><i class="ph ph-magnifying-glass"></i></button>
+            </form>
+        </div>
+
+        <!-- Bottom Navigation Menu -->
+        <nav class="hidden md:block border-t border-gray-100">
+            <div class="container mx-auto px-4 flex items-center gap-8">
+                <!-- Browse Categories Dropdown -->
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button class="flex items-center gap-3 bg-brand-600 text-white px-6 py-3.5 font-medium min-w-[260px] group-hover:bg-brand-700 transition">
+                        <i class="ph ph-list text-xl"></i>
+                        <span>Browse Categories</span>
+                        <i class="ph ph-caret-down ml-auto transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <!-- Dropdown -->
+                    <div class="absolute top-full left-0 w-full bg-white shadow-xl border-x border-b border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top group-hover:scale-y-100 scale-y-95">
+                        <ul class="py-2">
+                            <li><a href="category.html" class="flex items-center justify-between px-6 py-3 hover:bg-brand-50 text-gray-700 hover:text-brand-600 transition"><span class="flex items-center gap-3"><i class="ph ph-device-mobile text-lg text-gray-400"></i> Electronics</span> <i class="ph ph-caret-right text-xs"></i></a></li>
+                            <li><a href="category.html" class="flex items-center justify-between px-6 py-3 hover:bg-brand-50 text-gray-700 hover:text-brand-600 transition"><span class="flex items-center gap-3"><i class="ph ph-t-shirt text-lg text-gray-400"></i> Fashion & Apparel</span> <i class="ph ph-caret-right text-xs"></i></a></li>
+                            <li><a href="category.html" class="flex items-center justify-between px-6 py-3 hover:bg-brand-50 text-gray-700 hover:text-brand-600 transition"><span class="flex items-center gap-3"><i class="ph ph-house-line text-lg text-gray-400"></i> Home & Kitchen</span> <i class="ph ph-caret-right text-xs"></i></a></li>
+                            <li><a href="category.html" class="flex items-center justify-between px-6 py-3 hover:bg-brand-50 text-gray-700 hover:text-brand-600 transition"><span class="flex items-center gap-3"><i class="ph ph-heartbeat text-lg text-gray-400"></i> Health & Beauty</span> <i class="ph ph-caret-right text-xs"></i></a></li>
+                            <li><a href="category.html" class="flex items-center justify-between px-6 py-3 hover:bg-brand-50 text-gray-700 hover:text-brand-600 transition"><span class="flex items-center gap-3"><i class="ph ph-game-controller text-lg text-gray-400"></i> Toys & Games</span> <i class="ph ph-caret-right text-xs"></i></a></li>
+                        </ul>
+                        <div class="p-4 border-t border-gray-100 bg-brand-50">
+                            <a href="category.html" class="text-brand-600 font-medium text-sm flex items-center justify-center gap-2 hover:underline">View All Categories <i class="ph ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Nav Links -->
+                <ul class="flex items-center gap-8 font-heading font-medium text-[15px]">
+                    <li><a href="index.html" class="text-brand-600">Home</a></li>
+                    <li><a href="category.html" class="text-gray-700 hover:text-brand-600 transition">Shop</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-brand-600 transition flex items-center gap-1">Flash Deals <span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded uppercase font-bold tracking-wider animate-pulse">Hot</span></a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-brand-600 transition">New Arrivals</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-brand-600 transition">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Mobile Sidebar Menu Overlay -->
+        <div x-show="mobileMenu" style="display: none;">
+            <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 bg-black/60 z-[60]" @click="mobileMenu = false"></div>
+            <div x-show="mobileMenu" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="fixed top-0 left-0 h-full w-4/5 max-w-sm bg-white z-[70] shadow-2xl flex flex-col overflow-y-auto">
+                <div class="p-5 flex justify-between items-center border-b border-gray-100 bg-gray-50">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold">Z</div>
+                        <span class="text-xl font-heading font-extrabold text-gray-900">Zipley</span>
+                    </a>
+                    <button @click="mobileMenu = false" class="w-8 h-8 flex items-center justify-center bg-white rounded-full text-gray-500 hover:text-red-500 shadow-sm"><i class="ph ph-x"></i></button>
+                </div>
+                <div class="p-4 flex-1">
+                    <ul class="space-y-4 font-medium text-gray-800">
+                        <li><a href="index.html" class="block pb-2 border-b border-gray-100 text-brand-600">Home</a></li>
+                        <li><a href="category.html" class="block pb-2 border-b border-gray-100">Shop Categories</a></li>
+                        <li><a href="#" class="block pb-2 border-b border-gray-100">Flash Deals <span class="text-red-500 text-xs ml-2">HOT</span></a></li>
+                        <li><a href="account.html" class="block pb-2 border-b border-gray-100">My Account</a></li>
+                        <li><a href="order-tracking.html" class="block pb-2 border-b border-gray-100">Track Order</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        @yield('content')
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2">
+                    <a href="index.html" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-brand-700 rounded-lg flex items-center justify-center text-white font-heading font-bold text-xl shadow-md">Z</div>
+                        <span class="text-2xl font-heading font-extrabold tracking-tight text-gray-900">Zipley<span class="text-brand-500">.</span></span>
+                    </a>
+                    <p class="text-gray-500 mb-6 max-w-sm leading-relaxed text-sm">Zipley is your ultimate destination for everything you need. Premium quality products, fast worldwide shipping, and exceptional 24/7 customer service.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all"><i class="ph-fill ph-facebook-logo text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all"><i class="ph-fill ph-twitter-logo text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all"><i class="ph-fill ph-instagram-logo text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all"><i class="ph-fill ph-youtube-logo text-lg"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-gray-900 font-heading mb-6 text-lg">Quick Links</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Contact Us</a></li>
+                        <li><a href="faq.html" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> FAQ</a></li>
+                        <li><a href="order-tracking.html" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Track Order</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-gray-900 font-heading mb-6 text-lg">Categories</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="category.html" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Electronics</a></li>
+                        <li><a href="category.html" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Fashion & Apparel</a></li>
+                        <li><a href="category.html" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Home & Kitchen</a></li>
+                        <li><a href="category.html" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Health & Beauty</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-gray-900 font-heading mb-6 text-lg">Customer Service</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Return Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Shipping Info</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">© 2026 Zipley. Developed by Zipley. All rights reserved.</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png" alt="Mastercard" class="h-6 object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100 cursor-pointer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa" class="h-6 object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100 cursor-pointer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png" alt="PayPal" class="h-6 object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+
+        // Initialize Swiper Hero Slider
+        const swiper = new Swiper('.heroSwiper', {
+            loop: true,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on: {
+                slideChangeTransitionStart: function () {
+                    // Reset animations
+                    const slides = document.querySelectorAll('.swiper-slide');
+                    slides.forEach(slide => {
+                        const elements = slide.querySelectorAll('.slide-element');
+                        elements.forEach(el => {
+                            el.classList.remove('opacity-100', 'translate-y-0');
+                            el.classList.add('opacity-0', 'translate-y-4');
+                        });
+                    });
+                },
+                slideChangeTransitionEnd: function () {
+                    // Trigger animations for active slide
+                    const activeSlide = document.querySelector('.swiper-slide-active');
+                    if (activeSlide) {
+                        const elements = activeSlide.querySelectorAll('.slide-element');
+                        elements.forEach(el => {
+                            el.classList.remove('opacity-0', 'translate-y-4');
+                            el.classList.add('opacity-100', 'translate-y-0');
+                        });
+                    }
+                }
+            }
+        });
+
+        // Initial trigger for first slide
+        setTimeout(() => {
+            const activeSlide = document.querySelector('.swiper-slide-active');
+            if (activeSlide) {
+                const elements = activeSlide.querySelectorAll('.slide-element');
+                elements.forEach(el => {
+                    el.classList.remove('opacity-0', 'translate-y-4');
+                    el.classList.add('opacity-100', 'translate-y-0');
+                });
+            }
+        }, 100);
+    </script>
+</body>
+</html>
