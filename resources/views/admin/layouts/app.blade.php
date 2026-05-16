@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="csrf-token" content="{{ csrf_token() }}"/>
 <title>Dashboard — AdminKit</title>
 <meta name="description" content="AdminKit — Professional admin dashboard starter kit with analytics, orders, users management."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -110,11 +111,12 @@
 
 <!-- ── SCRIPTS ─────────────────────────────────────────────── -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/charts.js"></script>
+
+<script src="{{ asset('admin/assets/js/charts.js') }}"></script>
+<script src="{{ asset('admin/assets/js/main.js') }}"></script>
 <script>
   // Demo toast on load
-  setTimeout(() => showToast('Welcome back, Alex! 👋', 'success'), 800);
+  // setTimeout(() => showToast('Welcome back, Alex! 👋', 'success'), 800);
 </script>
 
 <!-- Large Modal -->
@@ -162,7 +164,7 @@
     <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(244,63,94,.12)">
       <svg width="28" height="28" fill="none" stroke="#f43f5e" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
     </div>
-    <h2 class="text-xl font-bold text-main mb-2">Delete Confirmation</h2>
+    <h2 class="text-xl font-bold text-main mb-2">Delete Confirmation.</h2>
     <p class="text-sm mb-1" style="color:var(--text-muted)">Are you sure you want to delete <strong id="delete-target-label" style="color:var(--text-main)">this item</strong>?</p>
     <p class="text-xs mb-6" style="color:var(--text-muted)">This action <strong>cannot be undone</strong>. All associated data will be permanently removed.</p>
     <div class="flex gap-3">

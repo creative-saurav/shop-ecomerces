@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('product_variations', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->string('sku')->unique();
+            $table->decimal('price', 15, 2)->nullable();
+            $table->decimal('discount_price', 15, 2)->nullable();
+            $table->unsignedInteger('stock_quantity')->default(0);
+            $table->boolean('is_active')->default(true);
+            $table->json('variation_data')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('product_variations');
+    }
+};

@@ -84,15 +84,19 @@ function closeModal(id) {
   if (overlay) overlay.classList.remove('open');
 }
 
-document.querySelectorAll('[data-modal-open]').forEach(btn => {
-  btn.addEventListener('click', () => openModal(btn.dataset.modalOpen));
-});
-document.querySelectorAll('[data-modal-close]').forEach(btn => {
-  btn.addEventListener('click', () => closeModal(btn.dataset.modalClose));
-});
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) overlay.classList.remove('open');
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-modal-open]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.modalOpen));
+  });
+
+  document.querySelectorAll('[data-modal-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeModal(btn.dataset.modalClose));
+  });
+
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
   });
 });
 
@@ -132,9 +136,25 @@ window.closeModal = closeModal;
 
 // ── Delete Confirmation ──────────────────────────────────────
 let _deleteTarget = null;
+let _deleteForm = null;
+let _deleteAction = null;
+let _deleteMethod = 'DELETE';
 
-window.openDeleteModal = function(label) {
+window.openDeleteModal = function(form, label) {
+  _deleteForm = form;
+  _deleteAction = null;
+  _deleteMethod = 'DELETE';
   _deleteTarget = label || 'this item';
+  const labelEl = document.getElementById('delete-target-label');
+  if (labelEl) labelEl.textContent = _deleteTarget;
+  openModal('delete-modal');
+};
+
+window.confirmModal = function(action, method = 'DELETE', label = 'this item') {
+  _deleteForm = null;
+  _deleteAction = action;
+  _deleteMethod = method.toUpperCase();
+  _deleteTarget = label;
   const labelEl = document.getElementById('delete-target-label');
   if (labelEl) labelEl.textContent = _deleteTarget;
   openModal('delete-modal');
@@ -142,8 +162,42 @@ window.openDeleteModal = function(label) {
 
 window.confirmDeleteAction = function() {
   closeModal('delete-modal');
-  showToast(`Order ${_deleteTarget || 'item'} deleted successfully!`, 'success');
+
+  if (_deleteForm) {
+    _deleteForm.submit();
+  } else if (_deleteAction) {
+    const form = document.createElement('form');
+    form.action = _deleteAction;
+    form.method = _deleteMethod === 'GET' ? 'GET' : 'POST';
+    form.style.display = 'none';
+
+    if (_deleteMethod !== 'GET') {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+      if (csrfToken) {
+        const tokenInput = document.createElement('input');
+        tokenInput.type = 'hidden';
+        tokenInput.name = '_token';
+        tokenInput.value = csrfToken;
+        form.appendChild(tokenInput);
+      }
+    }
+
+    if (_deleteMethod !== 'GET' && _deleteMethod !== 'POST') {
+      const methodInput = document.createElement('input');
+      methodInput.type = 'hidden';
+      methodInput.name = '_method';
+      methodInput.value = _deleteMethod;
+      form.appendChild(methodInput);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+
   _deleteTarget = null;
+  _deleteForm = null;
+  _deleteAction = null;
+  _deleteMethod = 'DELETE';
 };
 
 

@@ -14,24 +14,34 @@
         </div>
     </div>
     <div class="nav-section-title">Main</div>
-    <a href="index.html" class="nav-item active"><svg width="17" height="17" fill="none" stroke="currentColor"
+    <a href="{{ route('admin.dashboard') }}" class="nav-item active"><svg width="17" height="17" fill="none" stroke="currentColor"
             stroke-width="2" viewBox="0 0 24 24">
             <rect x="3" y="3" width="7" height="7" />
             <rect x="14" y="3" width="7" height="7" />
             <rect x="3" y="14" width="7" height="7" />
             <rect x="14" y="14" width="7" height="7" />
         </svg><span class="nav-label">Dashboard</span></a>
-    <a href="analytics.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor"
+    <a href="{{ route('admin.category') }}" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor"
             stroke-width="2" viewBox="0 0 24 24">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-        </svg><span class="nav-label">Analytics</span></a>
+        </svg><span class="nav-label">Category</span></a>
+    <a href="{{ route('admin.brand') }}" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor"
+            stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2z" />
+            <path d="M8 7h8M8 11h8M8 15h8" />
+        </svg><span class="nav-label">Brands</span></a>
+    <a href="{{ route('admin.attribute') }}" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor"
+            stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+            <path d="M6 6v12" />
+        </svg><span class="nav-label">Attributes</span></a>
     <a href="orders.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor"
             stroke-width="2" viewBox="0 0 24 24">
             <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
             <line x1="3" y1="6" x2="21" y2="6" />
             <path d="M16 10a4 4 0 01-8 0" />
         </svg><span class="nav-label">Orders</span><span class="nav-badge">24</span></a>
-    <a href="products.html" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor"
+    <a href="{{ route('admin.product.index') }}" class="nav-item"><svg width="17" height="17" fill="none" stroke="currentColor"
             stroke-width="2" viewBox="0 0 24 24">
             <path
                 d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
