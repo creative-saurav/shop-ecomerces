@@ -212,6 +212,51 @@
             </div>
         </div>
 
+        <div class="rounded-xl border border-slate-200 bg-white p-4">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-base font-semibold text-main">Product variants</h2>
+                    <p class="text-sm text-slate-500">Manage existing variants for this product.</p>
+                </div>
+                <a href="{{ route('admin.product.variant.create', ['product_id' => $product->id]) }}" class="btn btn-secondary">Add variants</a>
+            </div>
+
+            @if($product->variants->isNotEmpty())
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <table class="w-full text-left text-sm text-slate-700">
+                        <thead class="border-b border-slate-200 text-slate-700">
+                            <tr>
+                                <th class="px-4 py-3">SKU</th>
+                                <th class="px-4 py-3">Variant</th>
+                                <th class="px-4 py-3">Price</th>
+                                <th class="px-4 py-3">Stock</th>
+                                <th class="px-4 py-3">Status</th>
+                                <th class="px-4 py-3">Default</th>
+                                <th class="px-4 py-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($product->variants as $variant)
+                                <tr class="border-b border-slate-200">
+                                    <td class="px-4 py-3 font-mono text-xs text-slate-700">{{ $variant->sku }}</td>
+                                    <td class="px-4 py-3">{{ $variant->variant_label }}</td>
+                                    <td class="px-4 py-3">${{ number_format($variant->price, 2) }}</td>
+                                    <td class="px-4 py-3">{{ $variant->stock_quantity }}</td>
+                                    <td class="px-4 py-3">{{ $variant->status ? 'Active' : 'Inactive' }}</td>
+                                    <td class="px-4 py-3">{{ $variant->is_default ? 'Yes' : 'No' }}</td>
+                                    <td class="px-4 py-3">
+                                        <a href="{{ route('admin.product.variant.edit', $variant) }}" class="btn btn-sm btn-secondary">Edit</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center text-slate-500">No variants configured for this product yet.</div>
+            @endif
+        </div>
+
         <div class="grid gap-6 lg:grid-cols-4">
             <div>
                 <label for="meta_title" class="block text-sm font-medium text-slate-700">Meta title</label>

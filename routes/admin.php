@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductVariantController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,6 +44,14 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('backend')->as('admin
    Route::put('/attribute/{attribute}', [AttributeController::class, 'update'])->name('attribute.update');
    Route::get('/attribute/{attribute}', [AttributeController::class, 'destroy'])->name('attribute.destroy');
 
+     //Product Variant
+   Route::get('/variant', [ProductVariantController::class, 'product_variant'])->name('product.variant');
+   Route::get('/product/variant/create', [ProductVariantController::class, 'create'])->name('product.variant.create');
+   Route::post('/product/variant', [ProductVariantController::class, 'store'])->name('product.variant.store');
+   Route::get('/product/variant/{variant}/edit', [ProductVariantController::class, 'edit'])->name('product.variant.edit');
+   Route::put('/product/variant/{variant}', [ProductVariantController::class, 'update'])->name('product.variant.update');
+   Route::delete('/variant/{variant}', [ProductVariantController::class, 'destroy'])
+    ->name('product.variant.destroy');
 
 
 

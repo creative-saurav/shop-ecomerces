@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\ProductVariant;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -85,9 +86,9 @@ class Product extends Model
             ->withTimestamps();
     }
 
-    public function variations(): HasMany
+    public function variants(): HasMany
     {
-        return $this->hasMany(ProductVariation::class);
+        return $this->hasMany(ProductVariant::class);
     }
 
     public function getPrimaryImageUrlAttribute(): ?string
